@@ -1,0 +1,11 @@
+C:\Users\my\source\repos\ZekterfyMVC\ZekterfyDomain\bin\Debug\net10.0\ZekterfyDomain.deps.json
+C:\Users\my\source\repos\ZekterfyMVC\ZekterfyDomain\bin\Debug\net10.0\ZekterfyDomain.dll
+C:\Users\my\source\repos\ZekterfyMVC\ZekterfyDomain\bin\Debug\net10.0\ZekterfyDomain.pdb
+C:\Users\my\source\repos\ZekterfyMVC\ZekterfyDomain\obj\Debug\net10.0\ZekterfyDomain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\my\source\repos\ZekterfyMVC\ZekterfyDomain\obj\Debug\net10.0\ZekterfyDomain.AssemblyInfoInputs.cache
+C:\Users\my\source\repos\ZekterfyMVC\ZekterfyDomain\obj\Debug\net10.0\ZekterfyDomain.AssemblyInfo.cs
+C:\Users\my\source\repos\ZekterfyMVC\ZekterfyDomain\obj\Debug\net10.0\ZekterfyDomain.csproj.CoreCompileInputs.cache
+C:\Users\my\source\repos\ZekterfyMVC\ZekterfyDomain\obj\Debug\net10.0\ZekterfyDomain.dll
+C:\Users\my\source\repos\ZekterfyMVC\ZekterfyDomain\obj\Debug\net10.0\refint\ZekterfyDomain.dll
+C:\Users\my\source\repos\ZekterfyMVC\ZekterfyDomain\obj\Debug\net10.0\ZekterfyDomain.pdb
+C:\Users\my\source\repos\ZekterfyMVC\ZekterfyDomain\obj\Debug\net10.0\ref\ZekterfyDomain.dll

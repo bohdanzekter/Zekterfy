@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Class1.cs",
+              "RelativeDocumentMoniker": "ZekterfyDomain\\Class1.cs",
+              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Class1.cs",
+              "RelativeToolTip": "ZekterfyDomain\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T18:26:26.009Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

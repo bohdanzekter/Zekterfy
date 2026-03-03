@@ -1,0 +1,224 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\song.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\song.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\queue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\queue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\history.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\history.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\entity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\entity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\album.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\album.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{69255922-D27F-4BD0-B297-6B12E367DFFE}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10A9ADB9-B640-4A46-ADAD-449D876DA6C8}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfyinfrastructure\\dbzekterfycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10A9ADB9-B640-4A46-ADAD-449D876DA6C8}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|solutionrelative:zekterfyinfrastructure\\dbzekterfycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\DbZekterfyContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ZekterfyDomain\\Model\\DbZekterfyContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\User.cs",
+              "RelativeDocumentMoniker": "ZekterfyDomain\\Model\\User.cs",
+              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\User.cs",
+              "RelativeToolTip": "ZekterfyDomain\\Model\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T18:40:09.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Song.cs",
+              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Song.cs",
+              "RelativeDocumentMoniker": "ZekterfyDomain\\Model\\Song.cs",
+              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Song.cs",
+              "RelativeToolTip": "ZekterfyDomain\\Model\\Song.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T18:40:04.041Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Report.cs",
+              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Report.cs",
+              "RelativeDocumentMoniker": "ZekterfyDomain\\Model\\Report.cs",
+              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Report.cs",
+              "RelativeToolTip": "ZekterfyDomain\\Model\\Report.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T18:39:52.899Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Queue.cs",
+              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Queue.cs",
+              "RelativeDocumentMoniker": "ZekterfyDomain\\Model\\Queue.cs",
+              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Queue.cs",
+              "RelativeToolTip": "ZekterfyDomain\\Model\\Queue.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T18:39:51.81Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "History.cs",
+              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\History.cs",
+              "RelativeDocumentMoniker": "ZekterfyDomain\\Model\\History.cs",
+              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\History.cs",
+              "RelativeToolTip": "ZekterfyDomain\\Model\\History.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T18:39:50.48Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Genre.cs",
+              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Genre.cs",
+              "RelativeDocumentMoniker": "ZekterfyDomain\\Model\\Genre.cs",
+              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Genre.cs",
+              "RelativeToolTip": "ZekterfyDomain\\Model\\Genre.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T18:39:31.779Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Author.cs",
+              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Author.cs",
+              "RelativeDocumentMoniker": "ZekterfyDomain\\Model\\Author.cs",
+              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Author.cs",
+              "RelativeToolTip": "ZekterfyDomain\\Model\\Author.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T18:39:22.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Album.cs",
+              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Album.cs",
+              "RelativeDocumentMoniker": "ZekterfyDomain\\Model\\Album.cs",
+              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Album.cs",
+              "RelativeToolTip": "ZekterfyDomain\\Model\\Album.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T18:39:00.567Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Entity.cs",
+              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Entity.cs",
+              "RelativeDocumentMoniker": "ZekterfyDomain\\Model\\Entity.cs",
+              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Entity.cs",
+              "RelativeToolTip": "ZekterfyDomain\\Model\\Entity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T18:38:22.122Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DbZekterfyContext.cs",
+              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\DbZekterfyContext.cs",
+              "RelativeDocumentMoniker": "ZekterfyInfrastructure\\DbZekterfyContext.cs",
+              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\DbZekterfyContext.cs",
+              "RelativeToolTip": "ZekterfyInfrastructure\\DbZekterfyContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T18:36:46.816Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DbZekterfyContext.cs",
+              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\DbZekterfyContext.cs",
+              "RelativeDocumentMoniker": "ZekterfyDomain\\Model\\DbZekterfyContext.cs",
+              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\DbZekterfyContext.cs",
+              "RelativeToolTip": "ZekterfyDomain\\Model\\DbZekterfyContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T18:36:13.65Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Class1.cs",
+              "RelativeDocumentMoniker": "ZekterfyDomain\\Class1.cs",
+              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Class1.cs",
+              "RelativeToolTip": "ZekterfyDomain\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T18:26:26.009Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
