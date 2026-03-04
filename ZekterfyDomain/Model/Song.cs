@@ -13,6 +13,7 @@ public partial class Song : Entity
 
     public int? AlbumId { get; set; }
 
+    //here should be genreId, have to 
     public string? GenreName { get; set; }
 
     public virtual Album? Album { get; set; }
