@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<ZekterfyDomain.Model.Song>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Пісні за жанром";
 }
 
-<h1>Index</h1>
+<h1>Пісні за жанром @ViewBag.GenreName</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @Html.ActionLink("Додати нову пісню", "Create", new{genreName = ViewBag.GenreName})
 </p>
 <table class="table">
     <thead>

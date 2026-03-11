@@ -6,6 +6,7 @@ C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\wwwroot\lib\bootstra
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\wwwroot\lib\bootstrap\dist\css\bootstrap.min_quartz.css
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
@@ -32,6 +33,7 @@ C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\wwwroot\lib\bootstra
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\wwwroot\lib\jquery\dist\jquery.slim.min.js
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\wwwroot\lib\bootstrap\dist\css\bootstrap_quartz.css
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
@@ -92,10 +94,12 @@ wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.min_quartz.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap_quartz.css
 wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
 wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
 wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js

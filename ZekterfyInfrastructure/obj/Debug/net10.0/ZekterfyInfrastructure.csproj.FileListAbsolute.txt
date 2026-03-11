@@ -306,3 +306,5 @@ C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\bin\Debug\net10.0\tr
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\obj\Debug\net10.0\ZekterfyInfrastructure.sourcelink.json
+C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\obj\Debug\net10.0\compressed\63r82me52a-{0}-fcji6ywkk4-fcji6ywkk4.gz
+C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\obj\Debug\net10.0\compressed\i3b9lmwiys-{0}-xv0c0ndthp-xv0c0ndthp.gz

@@ -41,7 +41,7 @@ namespace ZekterfyInfrastructure.Controllers
             }
 
             //return View(genre);
-            return RedirectToAction("Index", "Songs", new { id = genre.Id, name = genre.Name });
+            return RedirectToAction("Index", "Songs", new { id = genre.Id,name = genre.Name });
         }
 
         // GET: Genres/Create

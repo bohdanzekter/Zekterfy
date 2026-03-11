@@ -27,9 +27,9 @@ namespace ZekterfyInfrastructure.Controllers
             ViewBag.GenreId = id;
             ViewBag.GenreName = name;
 
-            var songByGenre = _context.Songs.Where(b => b.GenreName == name);
-            var dbZekterfyContext = _context.Songs.Include(s => s.Album);
-            return View(await dbZekterfyContext.ToListAsync());
+            var songByGenre = _context.Songs.Where(g => g.GenreName == name);
+            //var dbZekterfyContext = _context.Songs.Include(s => s.Album);
+            return View(await songByGenre.ToListAsync());
         }
 
         // GET: Songs/Details/5
@@ -48,13 +48,15 @@ namespace ZekterfyInfrastructure.Controllers
                 return NotFound();
             }
 
-            return View(song);
+            return View(song);      
         }
 
         // GET: Songs/Create
-        public IActionResult Create()
+        public IActionResult Create(string genreName)
         {
-            ViewData["AlbumId"] = new SelectList(_context.Albums, "Id", "Name");
+            //ViewData["AlbumId"] = new SelectList(_context.Albums, "Id", "Name");
+            ViewBag.GenreName = genreName;
+            ViewBag.GenreName = _context.Genres.Where(g => g.Name == genreName).FirstOrDefault().Name;
             return View();
         }
 
@@ -63,16 +65,19 @@ namespace ZekterfyInfrastructure.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Lenght,NumOfStreams,Name,AlbumId,GenreName,Id")] Song song)
+        public async Task<IActionResult> Create(string genreName,[Bind("Lenght,NumOfStreams,Name,AlbumId,GenreName,Id")] Song song)
         {
+            song.GenreName = genreName;
             if (ModelState.IsValid)
             {
                 _context.Add(song);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Songs", new { id = genreName, name = _context.Genres.Where(g => g.Name == genreName).FirstOrDefault().Name });
             }
-            ViewData["AlbumId"] = new SelectList(_context.Albums, "Id", "Name", song.AlbumId);
-            return View(song);
+            //ViewData["AlbumId"] = new SelectList(_context.Albums, "Id", "Name", song.AlbumId);
+            //return View(song);
+            return RedirectToAction("Index", "Songs", new { id = genreName, name = _context.Genres.Where(g => g.Name == genreName).FirstOrDefault().Name });
         }
 
         // GET: Songs/Edit/5

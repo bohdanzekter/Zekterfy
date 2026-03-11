@@ -3,56 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfyinfrastructure\\controllers\\genrescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|solutionrelative:zekterfyinfrastructure\\controllers\\genrescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfyinfrastructure\\dbzekterfycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|solutionrelative:zekterfyinfrastructure\\dbzekterfycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\songauthor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\songauthor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\songgenre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\songgenre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\favorite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\favorite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfyinfrastructure\\views\\songs\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|solutionrelative:zekterfyinfrastructure\\views\\songs\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfyinfrastructure\\controllers\\songscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|solutionrelative:zekterfyinfrastructure\\controllers\\songscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\song.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\song.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfyinfrastructure\\controllers\\genrescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|solutionrelative:zekterfyinfrastructure\\controllers\\genrescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfyinfrastructure\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|solutionrelative:zekterfyinfrastructure\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfyinfrastructure\\views\\songs\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|solutionrelative:zekterfyinfrastructure\\views\\songs\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfyinfrastructure\\views\\genres\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|solutionrelative:zekterfyinfrastructure\\views\\genres\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfyinfrastructure\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|solutionrelative:zekterfyinfrastructure\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfyinfrastructure\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|solutionrelative:zekterfyinfrastructure\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\songgenre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\songgenre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\song.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\song.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfyinfrastructure\\dbzekterfycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF337635-F699-F029-BC98-A9CE77B380EE}|ZekterfyInfrastructure\\ZekterfyInfrastructure.csproj|solutionrelative:zekterfyinfrastructure\\dbzekterfycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|c:\\users\\my\\source\\repos\\zekterfymvc\\zekterfydomain\\model\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32300721-7F07-2E67-709B-D792F1C9BA5F}|ZekterfyDomain\\ZekterfyDomain.csproj|solutionrelative:zekterfydomain\\model\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,24 +54,63 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\Views\\Songs\\Create.cshtml",
+              "RelativeDocumentMoniker": "ZekterfyInfrastructure\\Views\\Songs\\Create.cshtml",
+              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\Views\\Songs\\Create.cshtml",
+              "RelativeToolTip": "ZekterfyInfrastructure\\Views\\Songs\\Create.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAwwCwAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-10T23:05:54.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\Views\\Songs\\Index.cshtml",
+              "RelativeDocumentMoniker": "ZekterfyInfrastructure\\Views\\Songs\\Index.cshtml",
+              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\Views\\Songs\\Index.cshtml",
+              "RelativeToolTip": "ZekterfyInfrastructure\\Views\\Songs\\Index.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-10T22:18:47.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\Views\\Genres\\Index.cshtml",
+              "RelativeDocumentMoniker": "ZekterfyInfrastructure\\Views\\Genres\\Index.cshtml",
+              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\Views\\Genres\\Index.cshtml",
+              "RelativeToolTip": "ZekterfyInfrastructure\\Views\\Genres\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-10T22:28:25.813Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "DbZekterfyContext.cs",
               "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\DbZekterfyContext.cs",
               "RelativeDocumentMoniker": "ZekterfyInfrastructure\\DbZekterfyContext.cs",
               "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\DbZekterfyContext.cs",
               "RelativeToolTip": "ZekterfyInfrastructure\\DbZekterfyContext.cs",
-              "ViewState": "AgIAACABAAAAAAAAAAAAAD0BAABDAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAD0BAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-04T08:59:31.736Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "SongGenre.cs",
               "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\SongGenre.cs",
               "RelativeDocumentMoniker": "ZekterfyDomain\\Model\\SongGenre.cs",
@@ -92,141 +123,81 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SongAuthor.cs",
-              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\SongAuthor.cs",
-              "RelativeDocumentMoniker": "ZekterfyDomain\\Model\\SongAuthor.cs",
-              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\SongAuthor.cs",
-              "RelativeToolTip": "ZekterfyDomain\\Model\\SongAuthor.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-04T08:58:51.404Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Favorite.cs",
-              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Favorite.cs",
-              "RelativeDocumentMoniker": "ZekterfyDomain\\Model\\Favorite.cs",
-              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Favorite.cs",
-              "RelativeToolTip": "ZekterfyDomain\\Model\\Favorite.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-04T08:58:18.96Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Author.cs",
-              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Author.cs",
-              "RelativeDocumentMoniker": "ZekterfyDomain\\Model\\Author.cs",
-              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Author.cs",
-              "RelativeToolTip": "ZekterfyDomain\\Model\\Author.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-04T08:58:16.972Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "SongsController.cs",
               "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\Controllers\\SongsController.cs",
               "RelativeDocumentMoniker": "ZekterfyInfrastructure\\Controllers\\SongsController.cs",
               "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\Controllers\\SongsController.cs",
               "RelativeToolTip": "ZekterfyInfrastructure\\Controllers\\SongsController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB0AAABNAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAApwEkAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-03T20:53:38.514Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "ZekterfyInfrastructure\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "ZekterfyInfrastructure\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-03T20:52:51.565Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "GenresController.cs",
               "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\Controllers\\GenresController.cs",
               "RelativeDocumentMoniker": "ZekterfyInfrastructure\\Controllers\\GenresController.cs",
               "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\Controllers\\GenresController.cs",
               "RelativeToolTip": "ZekterfyInfrastructure\\Controllers\\GenresController.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAMwD4AAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACsAAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-03T20:43:14.185Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "Genre.cs",
               "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Genre.cs",
               "RelativeDocumentMoniker": "ZekterfyDomain\\Model\\Genre.cs",
               "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Genre.cs",
               "RelativeToolTip": "ZekterfyDomain\\Model\\Genre.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-03T20:37:01.547Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "Song.cs",
               "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Song.cs",
               "RelativeDocumentMoniker": "ZekterfyDomain\\Model\\Song.cs",
               "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\Song.cs",
               "RelativeToolTip": "ZekterfyDomain\\Model\\Song.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-03T20:36:50.831Z"
+              "WhenOpened": "2026-03-03T20:36:50.831Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\Program.cs",
               "RelativeDocumentMoniker": "ZekterfyInfrastructure\\Program.cs",
               "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\Program.cs",
               "RelativeToolTip": "ZekterfyInfrastructure\\Program.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB8AAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAB8AAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-03T18:50:09.634Z"
+              "WhenOpened": "2026-03-03T18:50:09.634Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\appsettings.json",
-              "RelativeDocumentMoniker": "ZekterfyInfrastructure\\appsettings.json",
-              "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyInfrastructure\\appsettings.json",
-              "RelativeToolTip": "ZekterfyInfrastructure\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-03-03T18:48:20.435Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\User.cs",
               "RelativeDocumentMoniker": "ZekterfyDomain\\Model\\User.cs",
               "ToolTip": "C:\\Users\\my\\source\\repos\\ZekterfyMVC\\ZekterfyDomain\\Model\\User.cs",
               "RelativeToolTip": "ZekterfyDomain\\Model\\User.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAgAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-03T18:40:09.413Z"
+              "WhenOpened": "2026-03-03T18:40:09.413Z",
+              "EditorCaption": ""
             }
           ]
         }
