@@ -20,11 +20,11 @@ namespace ZekterfyInfrastructure.Controllers
         }
 
         // GET: Songs
-        public async Task<IActionResult> Index(int? id, string? name)
+        public async Task<IActionResult> Index(string? name)
         {
-            if (id == null) return RedirectToAction("Genres", "Index");
+            if (name == null) return RedirectToAction("Index", "Genres");
             //знаходження пісень за жанром
-            ViewBag.GenreId = id;
+            //ViewBag.GenreId = id;
             ViewBag.GenreName = name;
 
             var songByGenre = _context.Songs.Where(g => g.GenreName == name);
@@ -60,9 +60,9 @@ namespace ZekterfyInfrastructure.Controllers
             return View();
         }
 
-        // POST: Songs/Create
+        // POST: Songs/Create   
         // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598. 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(string genreName,[Bind("Lenght,NumOfStreams,Name,AlbumId,GenreName,Id")] Song song)
@@ -73,11 +73,11 @@ namespace ZekterfyInfrastructure.Controllers
                 _context.Add(song);
                 await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
-                return RedirectToAction("Index", "Songs", new { id = genreName, name = _context.Genres.Where(g => g.Name == genreName).FirstOrDefault().Name });
+                return RedirectToAction("Index", new {name= genreName});
             }
             //ViewData["AlbumId"] = new SelectList(_context.Albums, "Id", "Name", song.AlbumId);
             //return View(song);
-            return RedirectToAction("Index", "Songs", new { id = genreName, name = _context.Genres.Where(g => g.Name == genreName).FirstOrDefault().Name });
+            return RedirectToAction("Index", new { name = genreName });
         }
 
         // GET: Songs/Edit/5

@@ -14,12 +14,16 @@ public partial class Song : Entity
     [Display(Name = "Кількість прослуховувать")]
     public int? NumOfStreams { get; set; }
 
+    [Required(ErrorMessage = "Назва пісні обов'язкова")]
+    [Display(Name = "Назва пісні")]
     public string? Name { get; set; }
 
+    [Display(Name = "id альбому")]
     public int? AlbumId { get; set; }
 
-    //here should be genreId, have to 
-    public string? GenreName { get; set; }
+    [Required(ErrorMessage = "Жанр пісні обов'язковий")]
+    [Display(Name = "Жанр пісні")]
+    public string? GenreName { get; set; }  //here should be genreId
 
     public virtual Album? Album { get; set; }
 }

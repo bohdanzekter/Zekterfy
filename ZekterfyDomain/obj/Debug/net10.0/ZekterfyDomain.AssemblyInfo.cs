@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZekterfyDomain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+962a624c09e834f16e402ec4d64ad743f1121c79")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ad73770c1aee5004c041dae8d5d669934afbe1b2")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZekterfyDomain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZekterfyDomain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
