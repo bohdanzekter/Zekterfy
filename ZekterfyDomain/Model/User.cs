@@ -1,29 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace ZekterfyDomain.Model;
 
-public partial class User : Entity
+public partial class User : IdentityUser
 {
-    [Required(ErrorMessage = "Пароль обов'язковий")]
-    [Display(Name = "Пароль")]
-    public string? Password { get; set; }
-
-    [Display(Name = "Кількість підписок")]
-    public int? FolowersCount { get; set; }
-
-    [Display(Name = "Кількість підписників")]
-    public int? FolowsCount { get; set; }
-
-    [Display(Name = "Приорітетний жанр")]
-    public int? PreferedGenreId { get; set; }
-
-    [Display(Name = "Прослуховує")]
-    public bool? Listening { get; set; }
-
-    [Display(Name = "Адмін")]
-    public bool? IsAdmin { get; set; }
+    public int Year { get; set; }
 
     [Display(Name = "Посилання на аватар")]
     public string? AvatarUrl { get; set; }

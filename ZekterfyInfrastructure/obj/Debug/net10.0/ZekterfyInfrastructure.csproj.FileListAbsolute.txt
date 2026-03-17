@@ -182,7 +182,6 @@ C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\obj\Debug\net10.0\st
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\obj\Debug\net10.0\staticwebassets.development.json
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\obj\Debug\net10.0\swae.build.ex.cache
-C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\obj\Debug\net10.0\Zekterfy.D8EA592D.Up2Date
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\obj\Debug\net10.0\ZekterfyInfrastructure.dll
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyInfrastructure\obj\Debug\net10.0\refint\ZekterfyInfrastructure.dll
