@@ -240,9 +240,9 @@ public partial class DbZekterfyContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("id");
             entity.Property(e => e.AlbumId).HasColumnName("album_id");
-            entity.Property(e => e.GenreName)
-                .HasColumnType("character varying")
-                .HasColumnName("genre_name");
+            entity.Property(e => e.GenreId)
+                .HasColumnType("integer")
+                .HasColumnName("genre_id");
             entity.Property(e => e.Lenght).HasColumnName("lenght");
             entity.Property(e => e.Name)
                 .HasColumnType("character varying")

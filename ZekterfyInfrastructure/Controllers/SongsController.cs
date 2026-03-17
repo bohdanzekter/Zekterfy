@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Humanizer.Localisation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using ZekterfyDomain.Model;
 using ZekterfyInfrastructure;
 
@@ -20,14 +21,20 @@ namespace ZekterfyInfrastructure.Controllers
         }
 
         // GET: Songs
-        public async Task<IActionResult> Index(string? name)
+        public async Task<IActionResult> Index(int? id)
         {
-            if (name == null) return RedirectToAction("Index", "Genres");
+            if (id == null) return RedirectToAction("Index", "Genres");
+
+            // Якщо прийшов 0 з нашого верхнього меню — показуємо всі пісні
+            if (id == 0)
+            {
+                return View(await _context.Songs.ToListAsync());
+            }
             //знаходження пісень за жанром
             //ViewBag.GenreId = id;
-            ViewBag.GenreName = name;
+            ViewBag.GenreId = id;
 
-            var songByGenre = _context.Songs.Where(g => g.GenreName == name);
+            var songByGenre = _context.Songs.Where(g => g.GenreId == id);
             //var dbZekterfyContext = _context.Songs.Include(s => s.Album);
             return View(await songByGenre.ToListAsync());
         }
@@ -48,15 +55,19 @@ namespace ZekterfyInfrastructure.Controllers
                 return NotFound();
             }
 
-            return View(song);      
+            return View(song);
+            //return RedirectToAction("Index", "Songs", new { id = song.Id, albumId = song.AlbumId });
         }
 
         // GET: Songs/Create
-        public IActionResult Create(string genreName)
+        public IActionResult Create(int genreId)
         {
-            //ViewData["AlbumId"] = new SelectList(_context.Albums, "Id", "Name");
-            ViewBag.GenreName = genreName;
-            ViewBag.GenreName = _context.Genres.Where(g => g.Name == genreName).FirstOrDefault().Name;
+            ViewBag.GenreId = genreId;
+
+            var genre = _context.Genres.FirstOrDefault(g => g.Id == genreId);
+
+            ViewBag.GenreName = genre?.Name;
+
             return View();
         }
 
@@ -65,19 +76,43 @@ namespace ZekterfyInfrastructure.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598. 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(string genreName,[Bind("Lenght,NumOfStreams,Name,AlbumId,GenreName,Id")] Song song)
+        public async Task<IActionResult> Create(int genreId, [Bind("Lenght,NumOfStreams,Name,AlbumId,GenreName,Id")] Song song)
         {
-            song.GenreName = genreName;
+            song.GenreId = genreId;
             if (ModelState.IsValid)
             {
                 _context.Add(song);
                 await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
-                return RedirectToAction("Index", new {name= genreName});
+                return RedirectToAction("Index", "Songs", new { id = genreId, name = _context.Genres.Where(g => g.Id == genreId).FirstOrDefault().Name });
+                return RedirectToAction("Index", new { id = genreId });
             }
             //ViewData["AlbumId"] = new SelectList(_context.Albums, "Id", "Name", song.AlbumId);
             //return View(song);
-            return RedirectToAction("Index", new { name = genreName });
+            return RedirectToAction("Index", "Songs", new { id = genreId, name = _context.Genres.Where(g => g.Id == genreId).FirstOrDefault().Name });
+            return RedirectToAction("Index", new { id = genreId });
+
+
+            //song.GenreId = genreId;
+
+            //// Ігноруємо відсутність об'єкта Genre
+            //ModelState.Remove("Genre");
+
+            //// Якщо у вас є навігаційна властивість Album, її також треба ігнорувати!
+            //ModelState.Remove("Album");
+
+            //if (ModelState.IsValid)
+            //{
+            //    _context.Add(song);
+            //    await _context.SaveChangesAsync();
+            //    return RedirectToAction("Index", new { genreId = genreId });
+            //}
+
+            //// --- ДОДАЄМО РЯДКИ ДЛЯ ДЕБАГУ ---
+            //// Якщо ми дійшли сюди, значить ModelState.IsValid == false.
+            //// Збираємо всі помилки валідації в один текст і виводимо на екран:
+            //var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+            //return Content("ЗБЕРЕЖЕННЯ ЗУПИНЕНО! Причина помилки: " + string.Join(" | ", errors));
         }
 
         // GET: Songs/Edit/5

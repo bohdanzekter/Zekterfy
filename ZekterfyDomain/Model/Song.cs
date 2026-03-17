@@ -21,9 +21,9 @@ public partial class Song : Entity
     [Display(Name = "id альбому")]
     public int? AlbumId { get; set; }
 
-    [Required(ErrorMessage = "Жанр пісні обов'язковий")]
+    //[Required(ErrorMessage = "Жанр пісні обов'язковий")]
     [Display(Name = "Жанр пісні")]
-    public string? GenreName { get; set; }  //here should be genreId
+    public int? GenreId { get; set; }
 
     public virtual Album? Album { get; set; }
 }

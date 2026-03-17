@@ -6,4 +6,6 @@ namespace ZekterfyDomain.Model;
 public partial class Author : Entity
 {
     public string? Pseudonym { get; set; }
+
+    public DateOnly birthdate { get; set; }
 }

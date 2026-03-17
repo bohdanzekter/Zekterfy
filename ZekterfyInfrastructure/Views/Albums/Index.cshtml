@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ZekterfyDomain.Model.Genre>
+﻿@model IEnumerable<ZekterfyDomain.Model.Album>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,14 +9,14 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table" style="--bs-table-bg: #000; --bs-table-color: white;">
+<table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Info)
+                @Html.DisplayNameFor(model => model.AuthorId)
             </th>
             <th></th>
         </tr>
@@ -28,7 +28,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Info)
+                @Html.DisplayFor(modelItem => item.AuthorId)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

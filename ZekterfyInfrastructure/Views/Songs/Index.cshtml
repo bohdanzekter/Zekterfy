@@ -7,9 +7,9 @@
 <h1>Пісні за жанром @ViewBag.GenreName</h1>
 
 <p>
-    @Html.ActionLink("Додати нову пісню", "Create", new{genreName = ViewBag.GenreName})
+    @Html.ActionLink("Додати нову пісню", "Create", new{genreId = ViewBag.GenreId})
 </p>
-<table class="table">
+<table class="table" style="--bs-table-bg: #000; --bs-table-color: white;">
     <thead>
         <tr>
             <th>
@@ -22,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.GenreName)
+                @Html.DisplayNameFor(model => model.GenreId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Album)
@@ -43,7 +43,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.GenreName)
+                @Html.DisplayFor(modelItem => item.GenreId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Album.Name)
