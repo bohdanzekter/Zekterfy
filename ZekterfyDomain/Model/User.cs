@@ -14,4 +14,16 @@ public partial class User : IdentityUser
 
     [Display(Name = "Історія")]
     public virtual History? History { get; set; }
+
+    //public int? FolowersCount { get; set; }
+
+    //public int? FolowsCount { get; set; }
+
+    //public bool IsAdmin {  get; set; }
+
+    //public bool Listening { get; set; }
+
+    //public string? Password { get; set; }
+    
+    //public int PreferedGenreId { get; set; }
 }

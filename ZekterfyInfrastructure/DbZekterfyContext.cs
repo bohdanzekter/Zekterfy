@@ -302,14 +302,14 @@ public partial class DbZekterfyContext : DbContext
             entity.Property(e => e.AvatarUrl)
                 .HasColumnType("character varying")
                 .HasColumnName("avatar_url");
-            entity.Property(e => e.FolowersCount).HasColumnName("folowers_count");
-            entity.Property(e => e.FolowsCount).HasColumnName("folows_count");
-            entity.Property(e => e.IsAdmin).HasColumnName("is_admin");
-            entity.Property(e => e.Listening).HasColumnName("listening");
-            entity.Property(e => e.Password)
-                .HasMaxLength(15)
-                .HasColumnName("password");
-            entity.Property(e => e.PreferedGenreId).HasColumnName("prefered_genre_id");
+            //entity.Property(e => e.FolowersCount).HasColumnName("folowers_count");
+            //entity.Property(e => e.FolowsCount).HasColumnName("folows_count");
+            //entity.Property(e => e.IsAdmin).HasColumnName("is_admin");
+            //entity.Property(e => e.Listening).HasColumnName("listening");
+            //entity.Property(e => e.Password)
+            //    .HasMaxLength(15)
+            //    .HasColumnName("password");
+            //entity.Property(e => e.PreferedGenreId).HasColumnName("prefered_genre_id");
         });
 
         OnModelCreatingPartial(modelBuilder);

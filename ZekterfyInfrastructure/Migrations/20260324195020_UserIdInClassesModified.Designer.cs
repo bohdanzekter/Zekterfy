@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ZekterfyInfrastructure;
@@ -11,9 +12,11 @@ using ZekterfyInfrastructure;
 namespace ZekterfyInfrastructure.Migrations
 {
     [DbContext(typeof(DbZekterfyContext))]
-    partial class DbZekterfyContextModelSnapshot : ModelSnapshot
+    [Migration("20260324195020_UserIdInClassesModified")]
+    partial class UserIdInClassesModified
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

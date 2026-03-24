@@ -1,8 +1,8 @@
+using ZekterfyDomain.Model;
+using ZekterfyInfrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
-using ZekterfyDomain.Model;
-using ZekterfyInfrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,13 +10,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<DbZekterfyContext>(option => option.UseNpgsql(
-builder.Configuration.GetConnectionString("DefaultConnection")
-));
+    builder.Configuration.GetConnectionString("DefaultConnection")
+    ));
+builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<IdentityContext>(option => option.UseNpgsql(
-builder.Configuration.GetConnectionString("IdentityConnection")
-));
-builder.Services.AddControllersWithViews();
+    builder.Configuration.GetConnectionString("IdentityConnection")
+    ));
+
 builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
 
 var app = builder.Build();
@@ -40,7 +41,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Genres}/{action=Index}/{id?}")
+    pattern: "{controller=Account}/{action=Register}")
     .WithStaticAssets();
 
 

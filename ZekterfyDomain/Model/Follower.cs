@@ -5,7 +5,7 @@ namespace ZekterfyDomain.Model;
 
 public partial class Follower
 {
-    public int? UserId { get; set; }
+    public string? UserId { get; set; }
 
     public int? AuthorId { get; set; }
 

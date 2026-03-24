@@ -10,3 +10,4 @@ C:\Users\my\source\repos\ZekterfyMVC\ZekterfyDomain\obj\Debug\net10.0\refint\Zek
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyDomain\obj\Debug\net10.0\ZekterfyDomain.pdb
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyDomain\obj\Debug\net10.0\ref\ZekterfyDomain.dll
 C:\Users\my\source\repos\ZekterfyMVC\ZekterfyDomain\obj\Debug\net10.0\ZekterfyDomain.sourcelink.json
+C:\Users\my\source\repos\ZekterfyMVC\ZekterfyDomain\obj\Debug\net10.0\ZekterfyDomain.csproj.AssemblyReference.cache

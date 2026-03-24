@@ -5,7 +5,7 @@ namespace ZekterfyDomain.Model;
 
 public partial class Report : Entity
 {
-    public int? UserId { get; set; }
+    public string? UserId { get; set; }
 
     public int? SongId { get; set; }
 
