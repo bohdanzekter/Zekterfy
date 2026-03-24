@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LibraryWebApplication.ViewModel;
 using Microsoft.AspNetCore.Identity;
-using ZekterfyInfrastructure.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using ZekterfyDomain.Model;
+using ZekterfyInfrastructure.ViewModels;
 
 namespace ZekterfyInfrastructure.Controllers
 {
@@ -33,7 +34,7 @@ namespace ZekterfyInfrastructure.Controllers
                 {
                     // установка кукі
                     await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Categories");
+                    return RedirectToAction("Index", "Genres");
                 }
                 else
                 {
@@ -44,6 +45,49 @@ namespace ZekterfyInfrastructure.Controllers
                 }
             }
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Login(string returnUrl = null)
+        {
+            return View(new LoginViewModel { ReturnUrl = returnUrl });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task< IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result =
+                await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                if (result.Succeeded)
+                {
+                    // перевіряємо, чи належить URL додатку
+                    if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+{
+                        return Redirect(model.ReturnUrl);
+                    }
+else
+                    {
+                        return RedirectToAction(" Index"," Сategories");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError(""," Неправильний логін чи(та) пароль");
+                }
+            }
+            return View(model);
+
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task< IActionResult> Logout()
+        {
+            // видаляємо автентифікаційні куки
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(" Index"," Categories");
         }
     }
 }
