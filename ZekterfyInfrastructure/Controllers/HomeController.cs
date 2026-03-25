@@ -6,6 +6,14 @@ namespace ZekterfyInfrastructure.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly DbZekterfyContext _context;
+
+        // Додаємо контекст бази даних у Home
+        public HomeController(DbZekterfyContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             return View();

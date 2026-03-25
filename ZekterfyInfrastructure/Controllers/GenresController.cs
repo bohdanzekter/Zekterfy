@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ZekterfyDomain.Model;
 using ZekterfyInfrastructure;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ZekterfyInfrastructure.Controllers
 {
+    [Authorize(Roles ="admin")]                                 //[Authorize(Roles ="admin,user")]
     public class GenresController : Controller
     {
         private readonly DbZekterfyContext _context;

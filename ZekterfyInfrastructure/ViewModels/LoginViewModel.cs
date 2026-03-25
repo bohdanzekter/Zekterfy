@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace LibraryWebApplication.ViewModel
+
+namespace ZekterfyInfrastructure.ViewModels
 {
     public class LoginViewModel
     {

@@ -1,5 +1,4 @@
-﻿using LibraryWebApplication.ViewModel;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ZekterfyDomain.Model;
 using ZekterfyInfrastructure.ViewModels;
@@ -34,7 +33,7 @@ namespace ZekterfyInfrastructure.Controllers
                 {
                     // установка кукі
                     await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Genres");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -55,7 +54,7 @@ namespace ZekterfyInfrastructure.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task< IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -65,17 +64,17 @@ namespace ZekterfyInfrastructure.Controllers
                 {
                     // перевіряємо, чи належить URL додатку
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
-{
+                    {
                         return Redirect(model.ReturnUrl);
                     }
-else
+                    else
                     {
-                        return RedirectToAction(" Index"," Сategories");
+                        return RedirectToAction("Index", " Home");
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError(""," Неправильний логін чи(та) пароль");
+                    ModelState.AddModelError("", " Неправильний логін чи(та) пароль");
                 }
             }
             return View(model);
@@ -83,11 +82,11 @@ else
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task< IActionResult> Logout()
+        public async Task<IActionResult> Logout()
         {
             // видаляємо автентифікаційні куки
             await _signInManager.SignOutAsync();
-            return RedirectToAction(" Index"," Categories");
+            return RedirectToAction("Index", " Home");
         }
     }
 }
