@@ -120,10 +120,13 @@ public partial class DbZekterfyContext : DbContext
 
         modelBuilder.Entity<Favorite>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("favorites");
+            entity.HasKey(e => e.Id).HasName("favorites_pkey");
 
+            entity.ToTable("favorites");
+
+            entity.Property(e => e.Id)
+                .HasColumnName("id")
+                .ValueGeneratedOnAdd();
             entity.Property(e => e.Added)
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("added");
@@ -137,10 +140,13 @@ public partial class DbZekterfyContext : DbContext
 
         modelBuilder.Entity<Follower>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("followers");
+            entity.HasKey(e => e.Id).HasName("followers_pkey");
 
+            entity.ToTable("followers");
+
+            entity.Property(e => e.Id)
+                .HasColumnName("id")
+                .ValueGeneratedOnAdd();
             entity.Property(e => e.AuthorId).HasColumnName("author_id");
             entity.Property(e => e.UserId).HasColumnName("user_id");
 
@@ -172,30 +178,38 @@ public partial class DbZekterfyContext : DbContext
 
         modelBuilder.Entity<History>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("history_pkey");
+            entity.HasKey(e => e.Id).HasName("history_pkey");
 
             entity.ToTable("history");
 
-            entity.HasIndex(e => e.UserId, "history_user_id_key");
+            entity.Property(e => e.Id)
+                .HasColumnName("id")
+                .ValueGeneratedOnAdd();
+
+            entity.HasIndex(e => e.UserId, "history_user_id_index");
 
             entity.Property(e => e.UserId)
-                .ValueGeneratedNever()
                 .HasColumnName("user_id");
+
             entity.Property(e => e.PlayedAt).HasColumnName("played_at");
             entity.Property(e => e.SongId).HasColumnName("song_id");
 
-            entity.HasOne(d => d.User).WithOne(p => p.History)
-                .HasForeignKey<History>(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_user_id");
+            entity.HasOne(d => d.User)
+                .WithMany()
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("history_user_id_fkey");
         });
 
         modelBuilder.Entity<Queue>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("queue");
+            entity.HasKey(e => e.Id).HasName("queue_pkey");
 
+            entity.ToTable("queue");
+
+            entity.Property(e => e.Id)
+                .HasColumnName("id")
+                .ValueGeneratedOnAdd();
             entity.Property(e => e.Position).HasColumnName("position");
             entity.Property(e => e.SongId).HasColumnName("song_id");
             entity.Property(e => e.UserId).HasColumnName("user_id");
@@ -207,13 +221,13 @@ public partial class DbZekterfyContext : DbContext
 
         modelBuilder.Entity<Report>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("reports");
+            entity.HasKey(e => e.Id).HasName("reports_pkey");
 
-            entity.HasIndex(e => e.Id, "reports_report_id_key").IsUnique();
+            entity.ToTable("reports");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasColumnName("id")
+                .ValueGeneratedOnAdd();
             entity.Property(e => e.Reason)
                 .HasMaxLength(250)
                 .HasColumnName("reason");

@@ -1,4 +1,5 @@
 ﻿using Humanizer.Localisation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using ZekterfyInfrastructure;
 
 namespace ZekterfyInfrastructure.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class SongsController : Controller
     {
         private readonly DbZekterfyContext _context;
@@ -85,34 +87,13 @@ namespace ZekterfyInfrastructure.Controllers
                 await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
                 return RedirectToAction("Index", "Songs", new { id = genreId, name = _context.Genres.Where(g => g.Id == genreId).FirstOrDefault().Name });
-                return RedirectToAction("Index", new { id = genreId });
+                //return RedirectToAction("Index", new { id = genreId });
             }
             //ViewData["AlbumId"] = new SelectList(_context.Albums, "Id", "Name", song.AlbumId);
             //return View(song);
             return RedirectToAction("Index", "Songs", new { id = genreId, name = _context.Genres.Where(g => g.Id == genreId).FirstOrDefault().Name });
-            return RedirectToAction("Index", new { id = genreId });
+            //return RedirectToAction("Index", new { id = genreId });
 
-
-            //song.GenreId = genreId;
-
-            //// Ігноруємо відсутність об'єкта Genre
-            //ModelState.Remove("Genre");
-
-            //// Якщо у вас є навігаційна властивість Album, її також треба ігнорувати!
-            //ModelState.Remove("Album");
-
-            //if (ModelState.IsValid)
-            //{
-            //    _context.Add(song);
-            //    await _context.SaveChangesAsync();
-            //    return RedirectToAction("Index", new { genreId = genreId });
-            //}
-
-            //// --- ДОДАЄМО РЯДКИ ДЛЯ ДЕБАГУ ---
-            //// Якщо ми дійшли сюди, значить ModelState.IsValid == false.
-            //// Збираємо всі помилки валідації в один текст і виводимо на екран:
-            //var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-            //return Content("ЗБЕРЕЖЕННЯ ЗУПИНЕНО! Причина помилки: " + string.Join(" | ", errors));
         }
 
         // GET: Songs/Edit/5

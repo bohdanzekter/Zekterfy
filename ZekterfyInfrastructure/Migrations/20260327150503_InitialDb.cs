@@ -1,12 +1,13 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace ZekterfyInfrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AddBirthdateToAuthor : Migration
+    public partial class InitialDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -54,14 +55,23 @@ namespace ZekterfyInfrastructure.Migrations
                 name: "users",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false),
-                    password = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
-                    folowers_count = table.Column<int>(type: "integer", nullable: true),
-                    folows_count = table.Column<int>(type: "integer", nullable: true),
-                    prefered_genre_id = table.Column<int>(type: "integer", nullable: true),
-                    listening = table.Column<bool>(type: "boolean", nullable: true),
-                    is_admin = table.Column<bool>(type: "boolean", nullable: true),
-                    avatar_url = table.Column<string>(type: "character varying", nullable: true)
+                    id = table.Column<string>(type: "text", nullable: false),
+                    Year = table.Column<int>(type: "integer", nullable: false),
+                    avatar_url = table.Column<string>(type: "character varying", nullable: true),
+                    UserName = table.Column<string>(type: "text", nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "text", nullable: true),
+                    Email = table.Column<string>(type: "text", nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "text", nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "boolean", nullable: false),
+                    PasswordHash = table.Column<string>(type: "text", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "text", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "boolean", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "boolean", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "boolean", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -77,7 +87,7 @@ namespace ZekterfyInfrastructure.Migrations
                     num_of_streams = table.Column<int>(type: "integer", nullable: true),
                     name = table.Column<string>(type: "character varying", nullable: false),
                     album_id = table.Column<int>(type: "integer", nullable: true),
-                    genre_name = table.Column<string>(type: "character varying", nullable: false)
+                    genre_id = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -135,12 +145,15 @@ namespace ZekterfyInfrastructure.Migrations
                 name: "favorites",
                 columns: table => new
                 {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     added = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    user_id = table.Column<int>(type: "integer", nullable: true),
+                    user_id = table.Column<string>(type: "text", nullable: true),
                     song_id = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("favorites_pkey", x => x.id);
                     table.ForeignKey(
                         name: "user_id",
                         column: x => x.user_id,
@@ -152,11 +165,14 @@ namespace ZekterfyInfrastructure.Migrations
                 name: "followers",
                 columns: table => new
                 {
-                    user_id = table.Column<int>(type: "integer", nullable: true),
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    user_id = table.Column<string>(type: "text", nullable: true),
                     author_id = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("followers_pkey", x => x.id);
                     table.ForeignKey(
                         name: "fk_author_id",
                         column: x => x.author_id,
@@ -173,30 +189,42 @@ namespace ZekterfyInfrastructure.Migrations
                 name: "history",
                 columns: table => new
                 {
-                    user_id = table.Column<int>(type: "integer", nullable: false),
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    user_id = table.Column<string>(type: "text", nullable: true),
                     song_id = table.Column<int>(type: "integer", nullable: true),
-                    played_at = table.Column<DateOnly>(type: "date", nullable: true)
+                    played_at = table.Column<DateOnly>(type: "date", nullable: true),
+                    UserId1 = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("history_pkey", x => x.user_id);
+                    table.PrimaryKey("history_pkey", x => x.id);
                     table.ForeignKey(
-                        name: "fk_user_id",
-                        column: x => x.user_id,
+                        name: "FK_history_users_UserId1",
+                        column: x => x.UserId1,
                         principalTable: "users",
                         principalColumn: "id");
+                    table.ForeignKey(
+                        name: "history_user_id_fkey",
+                        column: x => x.user_id,
+                        principalTable: "users",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "queue",
                 columns: table => new
                 {
-                    user_id = table.Column<int>(type: "integer", nullable: true),
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    user_id = table.Column<string>(type: "text", nullable: true),
                     song_id = table.Column<int>(type: "integer", nullable: true),
                     position = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("queue_pkey", x => x.id);
                     table.ForeignKey(
                         name: "user_id",
                         column: x => x.user_id,
@@ -208,14 +236,16 @@ namespace ZekterfyInfrastructure.Migrations
                 name: "reports",
                 columns: table => new
                 {
-                    user_id = table.Column<int>(type: "integer", nullable: true),
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    user_id = table.Column<string>(type: "text", nullable: true),
                     song_id = table.Column<int>(type: "integer", nullable: true),
                     reason = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    status = table.Column<bool>(type: "boolean", nullable: true),
-                    id = table.Column<int>(type: "integer", nullable: false)
+                    status = table.Column<bool>(type: "boolean", nullable: true)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("reports_pkey", x => x.id);
                     table.ForeignKey(
                         name: "fk_song",
                         column: x => x.song_id,
@@ -306,9 +336,15 @@ namespace ZekterfyInfrastructure.Migrations
                 column: "user_id");
 
             migrationBuilder.CreateIndex(
-                name: "history_user_id_key",
+                name: "history_user_id_index",
                 table: "history",
                 column: "user_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_history_UserId1",
+                table: "history",
+                column: "UserId1",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_queue_user_id",
@@ -324,12 +360,6 @@ namespace ZekterfyInfrastructure.Migrations
                 name: "IX_reports_user_id",
                 table: "reports",
                 column: "user_id");
-
-            migrationBuilder.CreateIndex(
-                name: "reports_report_id_key",
-                table: "reports",
-                column: "id",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_song_authors_author_id",

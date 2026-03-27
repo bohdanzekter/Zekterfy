@@ -1,4 +1,4 @@
-﻿namespace ZekterfyDomain.Model
+﻿    namespace ZekterfyDomain.Model
 {
     public abstract class Entity
     {

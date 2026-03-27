@@ -25,4 +25,8 @@
     <ProjectReference Include="..\ZekterfyDomain\ZekterfyDomain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

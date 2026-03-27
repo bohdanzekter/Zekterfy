@@ -7,7 +7,7 @@ namespace ZekterfyInfrastucture
     {
         public static async Task InitializeAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
-            string adminEmail = "admin @gmail.com";
+            string adminEmail = "admin@gmail.com";
             string password = "1A1a1A_";
             if (await roleManager.FindByNameAsync("admin") == null)
             {

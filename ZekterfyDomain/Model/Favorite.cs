@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ZekterfyDomain.Model;
 
-public partial class Favorite
+public partial class Favorite : Entity
 {
     public DateTime? Added { get; set; }
 

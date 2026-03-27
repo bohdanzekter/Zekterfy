@@ -12,15 +12,15 @@ using ZekterfyInfrastructure;
 namespace ZekterfyInfrastructure.Migrations
 {
     [DbContext(typeof(DbZekterfyContext))]
-    [Migration("20260316095656_AddBirthdateToAuthor")]
-    partial class AddBirthdateToAuthor
+    [Migration("20260327150503_InitialDb")]
+    partial class InitialDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.3")
+                .HasAnnotation("ProductVersion", "10.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -101,6 +101,13 @@ namespace ZekterfyInfrastructure.Migrations
 
             modelBuilder.Entity("ZekterfyDomain.Model.Favorite", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
                     b.Property<DateTime?>("Added")
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("added");
@@ -109,9 +116,12 @@ namespace ZekterfyInfrastructure.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("song_id");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer")
+                    b.Property<string>("UserId")
+                        .HasColumnType("text")
                         .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("favorites_pkey");
 
                     b.HasIndex("UserId");
 
@@ -120,13 +130,23 @@ namespace ZekterfyInfrastructure.Migrations
 
             modelBuilder.Entity("ZekterfyDomain.Model.Follower", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
                     b.Property<int?>("AuthorId")
                         .HasColumnType("integer")
                         .HasColumnName("author_id");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer")
+                    b.Property<string>("UserId")
+                        .HasColumnType("text")
                         .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("followers_pkey");
 
                     b.HasIndex("AuthorId");
 
@@ -159,9 +179,12 @@ namespace ZekterfyInfrastructure.Migrations
 
             modelBuilder.Entity("ZekterfyDomain.Model.History", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("user_id");
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateOnly?>("PlayedAt")
                         .HasColumnType("date")
@@ -171,16 +194,33 @@ namespace ZekterfyInfrastructure.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("song_id");
 
-                    b.HasKey("UserId")
+                    b.Property<string>("UserId")
+                        .HasColumnType("text")
+                        .HasColumnName("user_id");
+
+                    b.Property<string>("UserId1")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id")
                         .HasName("history_pkey");
 
-                    b.HasIndex(new[] { "UserId" }, "history_user_id_key");
+                    b.HasIndex("UserId1")
+                        .IsUnique();
+
+                    b.HasIndex(new[] { "UserId" }, "history_user_id_index");
 
                     b.ToTable("history", (string)null);
                 });
 
             modelBuilder.Entity("ZekterfyDomain.Model.Queue", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
                     b.Property<int?>("Position")
                         .HasColumnType("integer")
                         .HasColumnName("position");
@@ -189,9 +229,12 @@ namespace ZekterfyInfrastructure.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("song_id");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer")
+                    b.Property<string>("UserId")
+                        .HasColumnType("text")
                         .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("queue_pkey");
 
                     b.HasIndex("UserId");
 
@@ -201,8 +244,11 @@ namespace ZekterfyInfrastructure.Migrations
             modelBuilder.Entity("ZekterfyDomain.Model.Report", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Reason")
                         .HasMaxLength(250)
@@ -217,16 +263,16 @@ namespace ZekterfyInfrastructure.Migrations
                         .HasColumnType("boolean")
                         .HasColumnName("status");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer")
+                    b.Property<string>("UserId")
+                        .HasColumnType("text")
                         .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("reports_pkey");
 
                     b.HasIndex("SongId");
 
                     b.HasIndex("UserId");
-
-                    b.HasIndex(new[] { "Id" }, "reports_report_id_key")
-                        .IsUnique();
 
                     b.ToTable("reports", (string)null);
                 });
@@ -241,10 +287,9 @@ namespace ZekterfyInfrastructure.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("album_id");
 
-                    b.Property<string>("GenreName")
-                        .IsRequired()
-                        .HasColumnType("character varying")
-                        .HasColumnName("genre_name");
+                    b.Property<int?>("GenreId")
+                        .HasColumnType("integer")
+                        .HasColumnName("genre_id");
 
                     b.Property<int>("Lenght")
                         .HasColumnType("integer")
@@ -303,39 +348,58 @@ namespace ZekterfyInfrastructure.Migrations
 
             modelBuilder.Entity("ZekterfyDomain.Model.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("integer")
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
                         .HasColumnName("id");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("integer");
 
                     b.Property<string>("AvatarUrl")
                         .HasColumnType("character varying")
                         .HasColumnName("avatar_url");
 
-                    b.Property<int?>("FolowersCount")
-                        .HasColumnType("integer")
-                        .HasColumnName("folowers_count");
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("text");
 
-                    b.Property<int?>("FolowsCount")
-                        .HasColumnType("integer")
-                        .HasColumnName("folows_count");
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
 
-                    b.Property<bool?>("IsAdmin")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_admin");
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("boolean");
 
-                    b.Property<bool?>("Listening")
-                        .HasColumnType("boolean")
-                        .HasColumnName("listening");
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("boolean");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)")
-                        .HasColumnName("password");
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<int?>("PreferedGenreId")
-                        .HasColumnType("integer")
-                        .HasColumnName("prefered_genre_id");
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id")
                         .HasName("users_pkey");
@@ -409,10 +473,14 @@ namespace ZekterfyInfrastructure.Migrations
             modelBuilder.Entity("ZekterfyDomain.Model.History", b =>
                 {
                     b.HasOne("ZekterfyDomain.Model.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasConstraintName("history_user_id_fkey");
+
+                    b.HasOne("ZekterfyDomain.Model.User", null)
                         .WithOne("History")
-                        .HasForeignKey("ZekterfyDomain.Model.History", "UserId")
-                        .IsRequired()
-                        .HasConstraintName("fk_user_id");
+                        .HasForeignKey("ZekterfyDomain.Model.History", "UserId1");
 
                     b.Navigation("User");
                 });

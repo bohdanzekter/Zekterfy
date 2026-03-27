@@ -69,24 +69,25 @@ namespace ZekterfyInfrastructure.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", " Home");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("", " Неправильний логін чи(та) пароль");
+                    ModelState.AddModelError("", "Неправильний логін чи(та) пароль");
                 }
             }
             return View(model);
 
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             // видаляємо автентифікаційні куки
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", " Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

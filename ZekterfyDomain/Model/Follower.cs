@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ZekterfyDomain.Model;
 
-public partial class Follower
+public partial class Follower : Entity
 {
     public string? UserId { get; set; }
 

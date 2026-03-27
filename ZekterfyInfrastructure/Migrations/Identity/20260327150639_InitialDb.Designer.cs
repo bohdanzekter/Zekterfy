@@ -12,8 +12,8 @@ using ZekterfyDomain.Model;
 namespace ZekterfyInfrastructure.Migrations.Identity
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20260324222352_InitialIdentitySetup")]
-    partial class InitialIdentitySetup
+    [Migration("20260327150639_InitialDb")]
+    partial class InitialDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
