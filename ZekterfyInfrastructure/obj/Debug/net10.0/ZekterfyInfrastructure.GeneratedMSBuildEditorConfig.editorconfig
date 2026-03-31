@@ -58,6 +58,46 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWxidW1zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Favorites/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdGVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Favorites/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdGVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Favorites/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdGVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Favorites/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdGVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Favorites/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3JpdGVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Followers/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9sbG93ZXJzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Followers/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9sbG93ZXJzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Followers/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9sbG93ZXJzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Followers/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9sbG93ZXJzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Followers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9sbG93ZXJzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Genres/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VucmVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -78,12 +118,72 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2VucmVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Histories/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGlzdG9yaWVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Histories/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGlzdG9yaWVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Histories/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGlzdG9yaWVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Histories/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGlzdG9yaWVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Histories/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGlzdG9yaWVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Queues/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVldWVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Queues/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVldWVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Queues/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVldWVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Queues/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVldWVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Queues/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVldWVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Reports/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Reports/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Reports/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Reports/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Reports/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/my/source/repos/ZekterfyMVC/ZekterfyInfrastructure/Views/Roles/Edit.cshtml]

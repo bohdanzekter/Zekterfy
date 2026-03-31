@@ -27,6 +27,24 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Songs" asp-action="Index" asp-route-id="0">Пісні</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index" asp-route-id="0">Користувачі</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Favorites" asp-action="Index" asp-route-id="0">Улюблені</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Followers" asp-action="Index" asp-route-id="0">Підписники</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Histories" asp-action="Index" asp-route-id="0">Історія</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Queue" asp-action="Index" asp-route-id="0">Черга</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Report" asp-action="Index" asp-route-id="0">Репорти</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
@@ -55,5 +73,12 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+
+    <!-- Підключаємо Howler.js через CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+
+    <!-- Підключаємо наш власний скрипт плеєра (створимо його в Кроці 3) -->
+    <script src="~/js/player.js" asp-append-version="true"></script>
 </body>
 </html>

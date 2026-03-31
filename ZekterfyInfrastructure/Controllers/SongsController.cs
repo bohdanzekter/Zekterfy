@@ -187,5 +187,23 @@ namespace ZekterfyInfrastructure.Controllers
         {
             return _context.Songs.Any(e => e.Id == id);
         }
+
+        [HttpGet]
+        public IActionResult Stream(int id)
+        {
+            // 1. Знаходимо пісню в базі (наприклад, щоб дізнатися ім'я файлу)
+            // var song = _context.Songs.Find(id);
+
+            // 2. Вказуємо шлях до реального файлу на вашому комп'ютері
+            // Для тесту можете покласти якийсь mp3 файл у папку wwwroot/audio/
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "audio", "Linkin Park - Somewhere I Belong.mp3");
+
+            if (!System.IO.File.Exists(filePath))
+                return NotFound();
+
+            // 3. Віддаємо файл як аудіо-стрім! 
+            // enableRangeProcessing: true - МАГІЯ, яка дозволяє перемотувати пісню!
+            return PhysicalFile(filePath, "audio/mpeg", enableRangeProcessing: true);
+        }
     }
 }
