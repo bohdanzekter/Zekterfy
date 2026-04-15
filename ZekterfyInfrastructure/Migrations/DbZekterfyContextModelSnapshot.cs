@@ -106,7 +106,7 @@ namespace ZekterfyInfrastructure.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime?>("Added")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("added");
 
                     b.Property<int?>("SongId")
@@ -120,7 +120,7 @@ namespace ZekterfyInfrastructure.Migrations
                     b.HasKey("Id")
                         .HasName("favorites_pkey");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("SongId");
 
                     b.ToTable("favorites", (string)null);
                 });
@@ -306,6 +306,8 @@ namespace ZekterfyInfrastructure.Migrations
 
                     b.HasIndex("AlbumId");
 
+                    b.HasIndex("GenreId");
+
                     b.ToTable("songs", (string)null);
                 });
 
@@ -442,12 +444,11 @@ namespace ZekterfyInfrastructure.Migrations
 
             modelBuilder.Entity("ZekterfyDomain.Model.Favorite", b =>
                 {
-                    b.HasOne("ZekterfyDomain.Model.User", "User")
+                    b.HasOne("ZekterfyDomain.Model.Song", "Song")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("user_id");
+                        .HasForeignKey("SongId");
 
-                    b.Navigation("User");
+                    b.Navigation("Song");
                 });
 
             modelBuilder.Entity("ZekterfyDomain.Model.Follower", b =>
@@ -516,7 +517,13 @@ namespace ZekterfyInfrastructure.Migrations
                         .HasForeignKey("AlbumId")
                         .HasConstraintName("fk_album_id");
 
+                    b.HasOne("ZekterfyDomain.Model.Genre", "Genre")
+                        .WithMany()
+                        .HasForeignKey("GenreId");
+
                     b.Navigation("Album");
+
+                    b.Navigation("Genre");
                 });
 
             modelBuilder.Entity("ZekterfyDomain.Model.SongAuthor", b =>

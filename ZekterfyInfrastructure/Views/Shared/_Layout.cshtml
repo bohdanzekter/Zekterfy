@@ -1,19 +1,19 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ZekterfyInfrastructure</title>
+    <title>@ViewData["Title"] - Zekterfy</title>
     <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min_quartz.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap_pulse.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ZekterfyInfrastructure.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ZekterfyInfrastructure</a>
+                <a class="navbar-brand" style="color: #a991d4 !important; font-weight: bold;" asp-area="" asp-controller="Home" asp-action="Index">Zekterfy</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,37 +21,37 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Genres" asp-action="Index">Жанри</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Genres" asp-action="Index">Жанри</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Songs" asp-action="Index" asp-route-id="0">Пісні</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Songs" asp-action="Index" asp-route-id="0">Пісні</a>
+                        </li>
+                        @* <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Users" asp-action="Index" asp-route-id="0">Користувачі</a>
+                        </li> *@
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Favorites" asp-action="Index" asp-route-id="0">Улюблені</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index" asp-route-id="0">Користувачі</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Followers" asp-action="Index" asp-route-id="0">Підписники</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Favorites" asp-action="Index" asp-route-id="0">Улюблені</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Histories" asp-action="Index" asp-route-id="0">Історія</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Followers" asp-action="Index" asp-route-id="0">Підписники</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Queue" asp-action="Index" asp-route-id="0">Черга</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Histories" asp-action="Index" asp-route-id="0">Історія</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Report" asp-action="Index" asp-route-id="0">Репорти</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Queue" asp-action="Index" asp-route-id="0">Черга</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Report" asp-action="Index" asp-route-id="0">Репорти</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Login">Вхід</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Вхід</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Реєстрація</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Register">Реєстрація</a>
                         </li>
                     </ul>
                 </div>
@@ -66,7 +66,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2026 - Лабораторна робота 1, Зектер Богдан К-24, <a href="#"></a> - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+             2026 - Лабораторна робота 1, Зектер Богдан К-24, <a href="#"></a> - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -74,11 +74,34 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="fixed-bottom bg-dark text-white p-3 shadow-lg d-flex justify-content-between align-items-center" style="border-top: 1px solid #282828; z-index: 1050;">
+        
+            <div style="width: 30%;">
+                <h6 id="now-playing-title" class="mb-0 text-success fw-bold">Нічого не грає</h6>
+                <small class="text-muted">Оберіть пісню зі списку</small>
+            </div>
 
-    <!-- Підключаємо Howler.js через CDN -->
+            <div class="d-flex gap-3 justify-content-center" style="width: 40%;">
+                <button class="btn btn-outline-light rounded-circle" style="width: 45px; height: 45px;" onclick="MusicPlayer.pause()">⏸</button>
+                <button class="btn btn-success rounded-circle" style="width: 50px; height: 50px;" onclick="MusicPlayer.resume()">▶</button>
+                <button class="btn btn-outline-light rounded-circle" style="width: 45px; height: 45px;" onclick="MusicPlayer.playNext()">⏭</button>
+            </div>
+
+            <div style="width: 30%; text-align: right;">
+                <span class="badge bg-secondary">Zekterfy Player</span>
+            </div>
+        </div>
+    
+        <style>
+                body {
+                    padding-bottom: 80px;
+                }
+        </style>
+    }
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-
-    <!-- Підключаємо наш власний скрипт плеєра (створимо його в Кроці 3) -->
     <script src="~/js/player.js" asp-append-version="true"></script>
 </body>
 </html>

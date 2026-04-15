@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZekterfyDomain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2eb6cbe1dbdbed5a8750dacfefe2cbf39e8c2890")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4cec097e2732f289c55c93f27e3586857204d8df")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZekterfyDomain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZekterfyDomain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

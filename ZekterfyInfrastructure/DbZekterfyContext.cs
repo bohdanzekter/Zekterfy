@@ -121,21 +121,13 @@ public partial class DbZekterfyContext : DbContext
         modelBuilder.Entity<Favorite>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("favorites_pkey");
-
             entity.ToTable("favorites");
 
-            entity.Property(e => e.Id)
-                .HasColumnName("id")
-                .ValueGeneratedOnAdd();
-            entity.Property(e => e.Added)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("added");
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
+            entity.Property(e => e.Added).HasColumnName("added");
             entity.Property(e => e.SongId).HasColumnName("song_id");
-            entity.Property(e => e.UserId).HasColumnName("user_id");
 
-            entity.HasOne(d => d.User).WithMany()
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("user_id");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
         });
 
         modelBuilder.Entity<Follower>(entity =>

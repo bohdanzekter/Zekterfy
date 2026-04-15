@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ZekterfyDomain.Model;
 using ZekterfyInfrastructure;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ZekterfyInfrastructure.Controllers
 {
@@ -19,11 +22,17 @@ namespace ZekterfyInfrastructure.Controllers
             _context = context;
         }
 
+        [Authorize]
         // GET: Favorites
         public async Task<IActionResult> Index()
         {
-            var dbZekterfyContext = _context.Favorites.Include(f => f.User);
-            return View(await dbZekterfyContext.ToListAsync());
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var userFavorites = _context.Favorites
+                .Include(f => f.Song)
+                .Where(f => f.UserId == currentUserId);
+
+            return View(await userFavorites.ToListAsync());
         }
 
         // GET: Favorites/Details/5
@@ -35,7 +44,7 @@ namespace ZekterfyInfrastructure.Controllers
             }
 
             var favorite = await _context.Favorites
-                .Include(f => f.User)
+                .Include(f => f.Song)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (favorite == null)
             {
@@ -48,7 +57,7 @@ namespace ZekterfyInfrastructure.Controllers
         // GET: Favorites/Create
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["SongId"] = new SelectList(_context.Songs, "Id", "Name");
             return View();
         }
 
@@ -57,15 +66,23 @@ namespace ZekterfyInfrastructure.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Added,UserId,SongId,Id")] Favorite favorite)
+        public async Task<IActionResult> Create([Bind("SongId,Id")] Favorite favorite)
         {
+            favorite.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            favorite.Added = DateTime.UtcNow;
+
+            ModelState.Remove("User");
+            ModelState.Remove("Song");
+            ModelState.Remove("UserId");
+
             if (ModelState.IsValid)
             {
                 _context.Add(favorite);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", favorite.UserId);
+            ViewData["SongId"] = new SelectList(_context.Songs, "Id", "Name", favorite.SongId);
             return View(favorite);
         }
 
@@ -82,6 +99,7 @@ namespace ZekterfyInfrastructure.Controllers
             {
                 return NotFound();
             }
+            ViewData["SongId"] = new SelectList(_context.Songs, "Id", "Name", favorite.SongId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", favorite.UserId);
             return View(favorite);
         }
@@ -118,6 +136,7 @@ namespace ZekterfyInfrastructure.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["SongId"] = new SelectList(_context.Songs, "Id", "Name", favorite.SongId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", favorite.UserId);
             return View(favorite);
         }
@@ -131,7 +150,7 @@ namespace ZekterfyInfrastructure.Controllers
             }
 
             var favorite = await _context.Favorites
-                .Include(f => f.User)
+                .Include(f => f.Song)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (favorite == null)
             {

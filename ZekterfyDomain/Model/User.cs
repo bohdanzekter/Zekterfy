@@ -7,6 +7,7 @@ namespace ZekterfyDomain.Model;
 
 public partial class User : IdentityUser
 {
+    [Display(Name = "Рік народження")]
     public int Year { get; set; }
 
     [Display(Name = "Посилання на аватар")]

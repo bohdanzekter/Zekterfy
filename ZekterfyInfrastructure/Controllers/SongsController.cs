@@ -33,11 +33,11 @@ namespace ZekterfyInfrastructure.Controllers
                 return View(await _context.Songs.ToListAsync());
             }
             //знаходження пісень за жанром
-            //ViewBag.GenreId = id;
             ViewBag.GenreId = id;
 
-            var songByGenre = _context.Songs.Where(g => g.GenreId == id);
-            //var dbZekterfyContext = _context.Songs.Include(s => s.Album);
+            var songByGenre = _context.Songs.
+                Include(s => s.Genre).
+                Where(s => s.GenreId == id);
             return View(await songByGenre.ToListAsync());
         }
 
@@ -191,18 +191,14 @@ namespace ZekterfyInfrastructure.Controllers
         [HttpGet]
         public IActionResult Stream(int id)
         {
-            // 1. Знаходимо пісню в базі (наприклад, щоб дізнатися ім'я файлу)
-            // var song = _context.Songs.Find(id);
-
-            // 2. Вказуємо шлях до реального файлу на вашому комп'ютері
-            // Для тесту можете покласти якийсь mp3 файл у папку wwwroot/audio/
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "audio", "Linkin Park - Somewhere I Belong.mp3");
+            string fileName = $"{id}.mp3";
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "audio", fileName);
 
             if (!System.IO.File.Exists(filePath))
+            {
                 return NotFound();
+            }
 
-            // 3. Віддаємо файл як аудіо-стрім! 
-            // enableRangeProcessing: true - МАГІЯ, яка дозволяє перемотувати пісню!
             return PhysicalFile(filePath, "audio/mpeg", enableRangeProcessing: true);
         }
     }

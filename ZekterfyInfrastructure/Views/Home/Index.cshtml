@@ -10,32 +10,6 @@
 			<button type="submit" class="btn btn-sm btn-outline-danger">Вихід</button>
 		</form>
 	</div>
-
-	<!-- ===== ТУТ ПОЧИНАЄТЬСЯ НАШ ПЛЕЄР ===== -->
-	<div class="container text-center mt-5">
-		<div class="card p-4 bg-dark text-white mx-auto shadow-lg" style="max-width: 400px; border-radius: 15px;">
-			<h5 class="text-muted mb-1">Зараз грає</h5>
-			<h3 id="now-playing-title" class="text-info mb-4">Нічого не грає</h3>
-            
-			<div class="d-flex justify-content-center gap-3">
-				<button class="btn btn-secondary rounded-circle" style="width: 50px; height: 50px;" onclick="MusicPlayer.pause()">⏸</button>
-				<button class="btn btn-success rounded-circle" style="width: 60px; height: 60px; font-size: 24px;" onclick="MusicPlayer.resume()">▶</button>
-				<button class="btn btn-primary rounded-circle" style="width: 50px; height: 50px;" onclick="MusicPlayer.playNext()">⏭</button>
-			</div>
-		</div>
-
-		<!-- ТЕСТОВІ КНОПКИ ДЛЯ ДОДАВАННЯ ПІСЕНЬ -->
-		<div class="mt-5">
-			<h4 class="mb-3">Ваші рекомендації:</h4>
-			<!-- Зверніть увагу: ми передаємо ID пісні та її назву -->
-			<button class="btn btn-outline-dark m-1" onclick="MusicPlayer.addAndPlay(1, 'Тестова пісня 1')">
-				🎵 Слухати Пісню 1
-			</button>
-			<button class="btn btn-outline-dark m-1" onclick="MusicPlayer.addAndPlay(2, 'Тестова пісня 2')">
-				🎵 Слухати Пісню 2
-			</button>
-		</div>
-	</div>
 }
 else
 {
