@@ -1,50 +1,77 @@
 ﻿@model IEnumerable<ZekterfyDomain.Model.History>
 
 @{
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "Історія";
 }
 
-<h1>Index</h1>
+<h1>Історія</h1>
 
-<p>
-	<a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<table class="table spotify-table">
 	<thead>
 		<tr>
 			<th>
-				@Html.DisplayNameFor(model => model.SongId)
+			</th>
+			<th>
+			</th>
+			<th>
 			</th>
 			<th>
 				@Html.DisplayNameFor(model => model.PlayedAt)
 			</th>
 			<th>
-				@Html.DisplayNameFor(model => model.User)
+				@Html.DisplayNameFor(model => model.Song)
 			</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.SongId)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.PlayedAt)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.User.Id)
-				</td>
-				<td>
-					<div class="btn-group gap-2" role="group">
-						<a class="btn btn-sm btn-outline-light" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-						<a class="btn btn-sm btn-outline-info" asp-action="Details" asp-route-id="@item.Id">Details</a>
-						<a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-					</div>
-				</td>
-			</tr>
-		}
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @if (item.Song != null)
+                    {
+                        <td>
+                            <button class="btn btn-success rounded-circle btn-sm"
+                                    onclick="MusicPlayer.addAndPlay(@item.Song.Id, '@item.Song.Name')">
+                                ▶
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-warning rounded-circle btn-sm" title="Додати в чергу"
+                                    onclick="MusicPlayer.addToQueue(@item.Song.Id, '@item.Song.Name')">
+                                ➕
+                            </button>
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-danger btn-sm rounded-circle"
+                               style="width: 35px; height: 35px;"
+                               title="Поскаржитись"
+                               asp-controller="Reports" asp-action="Create" asp-route-songId="@item.Song.Id">🚩</a>
+                        </td>
+                        <td class="text-muted">
+                            @item.PlayedAt.ToLocalTime().ToString("HH:mm dd.MM")
+                        </td>
+                        <td class="spotify-song-title">
+                            @item.Song.Name
+                        </td>
+                        <td>
+                            <div class="btn-group gap-2" role="group">
+                                <a class="btn btn-sm btn-outline-info" asp-controller="Songs" asp-action="Details" asp-route-id="@item.Song.Id">Details</a>
+                            </div>
+                        </td>
+                    }
+                    else
+                    {
+                        <td colspan="3" class="text-muted text-center">Пісню видалено</td>
+                        <td class="text-muted">
+                            @item.PlayedAt.ToLocalTime().ToString("HH:mm dd.MM")
+                        </td>
+                        <td class="text-muted">Невідома пісня</td>
+                        <td></td>
+                    }
+                </tr>
+            }
+        </tbody>
 	</tbody>
 </table>

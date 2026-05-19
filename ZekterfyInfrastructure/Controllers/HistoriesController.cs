@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using ZekterfyDomain.Model;
 using ZekterfyInfrastructure;
 
 namespace ZekterfyInfrastructure.Controllers
 {
+    [Authorize]
     public class HistoriesController : Controller
     {
         private readonly DbZekterfyContext _context;
@@ -22,143 +23,57 @@ namespace ZekterfyInfrastructure.Controllers
         // GET: Histories
         public async Task<IActionResult> Index()
         {
-            var dbZekterfyContext = _context.Histories.Include(h => h.User);
-            return View(await dbZekterfyContext.ToListAsync());
-        }
-
-        // GET: Histories/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var history = await _context.Histories
-                .Include(h => h.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (history == null)
-            {
-                return NotFound();
-            }
+                .Include(h => h.Song)
+                .Where(h => h.UserId == userId)
+                .OrderByDescending(h => h.PlayedAt)
+                .ToListAsync();
 
             return View(history);
         }
 
-        // GET: Histories/Create
-        public IActionResult Create()
+        [HttpPost]
+        [IgnoreAntiforgeryToken]
+        public async Task<IActionResult> LogPlay([FromQuery] int songId)
         {
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!string.IsNullOrEmpty(userId))
+            {
+                var record = new History
+                {
+                    UserId = userId,
+                    SongId = songId,
+                    PlayedAt = DateTime.UtcNow
+                };
+                _context.Histories.Add(record);
+            }
+
+            var song = await _context.Songs.FindAsync(songId);
+            if (song != null)
+            {
+                song.NumOfStreams = (song.NumOfStreams ?? 0) + 1;
+                _context.Songs.Update(song);
+            }
+
+             await _context.SaveChangesAsync();
+
+            return Ok();
         }
 
-        // POST: Histories/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // Метод для видалення одного запису (опціонально)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,SongId,PlayedAt,Id")] History history)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (ModelState.IsValid)
+            var record = await _context.Histories.FindAsync(id);
+            if (record != null)
             {
-                _context.Add(history);
+                _context.Histories.Remove(record);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", history.UserId);
-            return View(history);
-        }
-
-        // GET: Histories/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var history = await _context.Histories.FindAsync(id);
-            if (history == null)
-            {
-                return NotFound();
-            }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", history.UserId);
-            return View(history);
-        }
-
-        // POST: Histories/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,SongId,PlayedAt,Id")] History history)
-        {
-            if (id != history.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(history);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!HistoryExists(history.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", history.UserId);
-            return View(history);
-        }
-
-        // GET: Histories/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var history = await _context.Histories
-                .Include(h => h.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (history == null)
-            {
-                return NotFound();
-            }
-
-            return View(history);
-        }
-
-        // POST: Histories/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var history = await _context.Histories.FindAsync(id);
-            if (history != null)
-            {
-                _context.Histories.Remove(history);
-            }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool HistoryExists(int id)
-        {
-            return _context.Histories.Any(e => e.Id == id);
         }
     }
 }

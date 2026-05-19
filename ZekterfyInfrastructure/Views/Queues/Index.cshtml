@@ -1,50 +1,40 @@
 ﻿@model IEnumerable<ZekterfyDomain.Model.Queue>
 
 @{
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "Черга";
 }
 
-<h1>Index</h1>
+<h1>Черга</h1>
+<div class="container mt-4">
+    <h2 class="text-white mb-4">🎶 Черга відтворення</h2>
 
-<p>
-	<a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-	<thead>
-		<tr>
-			<th>
-				@Html.DisplayNameFor(model => model.SongId)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Position)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.User)
-			</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.SongId)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Position)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.User.Id)
-				</td>
-				<td>
-					<div class="btn-group gap-2" role="group">
-						<a class="btn btn-sm btn-outline-light" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-						<a class="btn btn-sm btn-outline-info" asp-action="Details" asp-route-id="@item.Id">Details</a>
-						<a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-					</div>
-				</td>
-			</tr>
-		}
-	</tbody>
-</table>
+    <table class="table spotify-table" style="border-radius: 10px; overflow: hidden;">
+        <thead> 
+            <tr>
+                <th style="width: 50px;">#</th>
+                <th>Назва пісні</th>
+                <th style="width: 100px;">Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-muted">@item.Position</td>
+                    <td class="fw-bold">@item.Song.Name</td>
+                    <td>
+                        <button class="btn btn-sm btn-success rounded-circle"
+                                onclick="MusicPlayer.addAndPlay(@item.Song.Id, '@item.Song.Name')">
+                            ▶
+                        </button>
+                        <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="m-0">
+                            <button type="submit" class="btn btn-sm btn-outline-danger rounded-circle" title="Видалити з черги">
+                                ❌
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

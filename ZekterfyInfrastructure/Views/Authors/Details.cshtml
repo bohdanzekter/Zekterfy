@@ -1,0 +1,82 @@
+﻿@model IEnumerable<ZekterfyDomain.Model.Song>
+
+@{
+	ViewData["Title"] = "Пісні виконавця";
+}
+
+<h2 class="text-white mb-4">Пісні виконавця: <span class="text-success">@ViewBag.AuthorName</span></h2>
+
+<p>
+	<!-- Змінено посилання на створення пісні -->
+	<a class="btn btn-primary rounded-pill" asp-controller="Songs" asp-action="Create">Додати нову пісню</a>
+</p>
+
+<table class="table spotify-table">
+	<thead>
+		<tr>
+			<th style="width: 50px;"></th>
+			<th style="width: 50px;"></th>
+			<th style="width: 50px;"></th>
+			<th>Тривалість</th>
+			<th>Прослуховування</th>
+			<th>Назва пісні</th>
+			<th>Жанр</th>
+			<th>Альбом</th>
+			<th>Автор</th>
+			<th style="text-align: right;">Дії</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					<button class="btn btn-success rounded-circle btn-sm" style="width: 35px; height: 35px;"
+							onclick="MusicPlayer.addAndPlay(@item.Id, '@item.Name')">
+						▶
+					</button>
+				</td>
+				<td>
+					<button class="btn btn-outline-secondary rounded-circle btn-sm" style="width: 35px; height: 35px;" title="Додати в чергу"
+							onclick="MusicPlayer.addToQueue(@item.Id, '@item.Name')">
+						➕
+					</button>
+				</td>
+				<td>
+					<a class="btn btn-outline-danger btn-sm rounded-circle" style="width: 35px; height: 35px;" title="Поскаржитись"
+					   asp-controller="Reports" asp-action="Create" asp-route-songId="@item.Id">🚩</a>
+				</td>
+
+				<td>
+					@(item.Lenght.Value / 60):@((item.Lenght.Value % 60).ToString("00"))
+				</td>
+				<td>@item.NumOfStreams</td>
+				<td class="spotify-song-title">@item.Name</td>
+				<td>@item.Genre?.Name</td>
+				<td>@item.Album?.Name</td>
+
+				<td>
+					@{
+						var allLinks = ViewBag.SongAuthors as IEnumerable<ZekterfyDomain.Model.SongAuthor>;
+						var authorsOfThisSong = allLinks?
+							.Where(sa => sa.SongId == item.Id)
+							.Select(sa => sa.Author.Pseudonym);
+
+						string authorsText = authorsOfThisSong != null && authorsOfThisSong.Any()
+							? string.Join(", ", authorsOfThisSong)
+							: "Невідомий автор";
+					}
+					<span class="text-info fw-bold">@authorsText</span>
+				</td>
+
+				<td style="text-align: right;">
+					<div class="btn-group gap-2" role="group">
+						<a class="btn btn-sm btn-outline-light" asp-controller="Songs" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+						<a class="btn btn-sm btn-outline-info" asp-controller="Songs" asp-action="Details" asp-route-id="@item.Id">Details</a>
+						<a class="btn btn-sm btn-outline-danger" asp-controller="Songs" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+					</div>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

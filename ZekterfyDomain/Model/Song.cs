@@ -6,6 +6,7 @@ namespace ZekterfyDomain.Model;
 
 public partial class Song : Entity
 {
+    public bool IsApproved { get; set; } = false;
 
     [Required(ErrorMessage = "Довжина пісні обов'язкова")]
     [Display(Name = "Довжина пісні")]
@@ -30,4 +31,7 @@ public partial class Song : Entity
 
     [Display(Name = "Жанр")]
     public virtual Genre? Genre { get; set; }
+
+    [Display(Name = "Шлях до файлу")]
+    public string? FileName { get; set; }
 }

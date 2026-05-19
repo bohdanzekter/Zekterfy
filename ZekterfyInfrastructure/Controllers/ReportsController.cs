@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using ZekterfyDomain.Model;
 using ZekterfyInfrastructure;
 
@@ -20,10 +22,27 @@ namespace ZekterfyInfrastructure.Controllers
         }
 
         // GET: Reports
+        [Authorize] //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
-            var dbZekterfyContext = _context.Reports.Include(r => r.Song).Include(r => r.User);
-            return View(await dbZekterfyContext.ToListAsync());
+            var allReports = await _context.Reports
+                .Include(r => r.Song)
+                .OrderByDescending(r => r.CreatedAt)
+                .ToListAsync();
+
+            return View(allReports);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Resolve(int id)
+        {
+            var report = await _context.Reports.FindAsync(id);
+            if (report != null)
+            {
+                report.Status = true;
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Reports/Details/5
@@ -36,7 +55,6 @@ namespace ZekterfyInfrastructure.Controllers
 
             var report = await _context.Reports
                 .Include(r => r.Song)
-                .Include(r => r.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (report == null)
             {
@@ -47,29 +65,39 @@ namespace ZekterfyInfrastructure.Controllers
         }
 
         // GET: Reports/Create
-        public IActionResult Create()
+        public IActionResult Create(int songId)
         {
-            ViewData["SongId"] = new SelectList(_context.Songs, "Id", "Name");
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            var song = _context.Songs.Find(songId);
+            if (song == null) return NotFound();
+
+            ViewBag.SongName = song.Name;
+            ViewBag.SongId = songId;
             return View();
         }
 
-        // POST: Reports/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,SongId,Reason,Status,Id")] Report report)
+        public async Task<IActionResult> Create(int songId, string reason)
         {
-            if (ModelState.IsValid)
+            if (string.IsNullOrEmpty(reason))
             {
-                _context.Add(report);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ModelState.AddModelError("", "Будь ласка, вкажіть причину скарги.");
+                ViewBag.SongId = songId;
+                return View();
             }
-            ViewData["SongId"] = new SelectList(_context.Songs, "Id", "Name", report.SongId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", report.UserId);
-            return View(report);
+
+            var report = new Report
+            {
+                SongId = songId,
+                Reason = reason,
+                UserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                CreatedAt = DateTime.UtcNow
+            };
+
+            _context.Reports.Add(report);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index", "Songs", new { id = 0 });
         }
 
         // GET: Reports/Edit/5
@@ -86,7 +114,6 @@ namespace ZekterfyInfrastructure.Controllers
                 return NotFound();
             }
             ViewData["SongId"] = new SelectList(_context.Songs, "Id", "Name", report.SongId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", report.UserId);
             return View(report);
         }
 
@@ -95,7 +122,7 @@ namespace ZekterfyInfrastructure.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,SongId,Reason,Status,Id")] Report report)
+        public async Task<IActionResult> Edit(int id, [Bind("UserId,SongId,Reason,Status,CreatedAt,Id")] Report report)
         {
             if (id != report.Id)
             {
@@ -123,7 +150,6 @@ namespace ZekterfyInfrastructure.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["SongId"] = new SelectList(_context.Songs, "Id", "Name", report.SongId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", report.UserId);
             return View(report);
         }
 
@@ -137,7 +163,6 @@ namespace ZekterfyInfrastructure.Controllers
 
             var report = await _context.Reports
                 .Include(r => r.Song)
-                .Include(r => r.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (report == null)
             {

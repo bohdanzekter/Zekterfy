@@ -7,8 +7,14 @@
 <h1>Жанри</h1>
 
 <p>
-	@Html.ActionLink("Додати новий жанр", "Create")
+	<a class="btn btn-primary rounded-pill" asp-controller="Songs" asp-action="Create">Додати новий жанр</a>
 </p>
+
+<div class="row mb-4 mt-4">
+	<div class="col-12 d-flex justify-content-center">
+		<div id="songsByGenreChart" class="shadow-lg" style="border-radius: 15px; overflow: hidden;"></div>
+	</div>
+</div>
 <table class="table">
 	<thead>
 		<tr>
@@ -42,3 +48,45 @@
 		}
 	</tbody>
 </table>
+
+@section Scripts
+{
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawCharts);
+
+        function drawCharts() {
+        fetch('/api/charts/songsByGenre')
+        .then(response => response.json())
+        .then(data => {
+        const dataTable = new google.visualization.DataTable();
+        dataTable.addColumn('string', 'Жанр');
+        dataTable.addColumn('number', 'Кількість пісень');
+
+        data.forEach(item => {
+        dataTable.addRow([item.genreName, item.count]);
+        });
+
+        const options = {
+        title: 'Відсоток пісень за жанрами',
+        width: 700,
+        height: 400,
+        is3D: true,
+        backgroundColor: '#212529',
+        titleTextStyle: { color: '#ffffff', fontSize: 18 },
+        legend: {
+        position: 'right',
+        textStyle: { color: '#b3b3b3' }
+        },
+        colors:['#1ED760', '#593196', '#17a2b8', '#ffc107', '#dc3545']
+        };
+
+        const chart = new google.visualization.PieChart(document.getElementById('songsByGenreChart'));
+
+        chart.draw(dataTable, options);
+        })
+        .catch(error => console.error("Помилка завантаження графіка:", error));
+        }
+    </script>
+}

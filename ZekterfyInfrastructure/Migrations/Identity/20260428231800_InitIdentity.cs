@@ -7,11 +7,25 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ZekterfyInfrastructure.Migrations.Identity
 {
     /// <inheritdoc />
-    public partial class InitialDb : Migration
+    public partial class InitIdentity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Album",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    AuthorId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Album", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -51,6 +65,20 @@ namespace ZekterfyInfrastructure.Migrations.Identity
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Genre",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Info = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Genre", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -160,6 +188,33 @@ namespace ZekterfyInfrastructure.Migrations.Identity
                 });
 
             migrationBuilder.CreateTable(
+                name: "Song",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Lenght = table.Column<int>(type: "integer", nullable: false),
+                    NumOfStreams = table.Column<int>(type: "integer", nullable: true),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    AlbumId = table.Column<int>(type: "integer", nullable: true),
+                    GenreId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Song", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Song_Album_AlbumId",
+                        column: x => x.AlbumId,
+                        principalTable: "Album",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Song_Genre_GenreId",
+                        column: x => x.GenreId,
+                        principalTable: "Genre",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "History",
                 columns: table => new
                 {
@@ -167,7 +222,7 @@ namespace ZekterfyInfrastructure.Migrations.Identity
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserId = table.Column<string>(type: "text", nullable: true),
                     SongId = table.Column<int>(type: "integer", nullable: true),
-                    PlayedAt = table.Column<DateOnly>(type: "date", nullable: true)
+                    PlayedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -176,6 +231,11 @@ namespace ZekterfyInfrastructure.Migrations.Identity
                         name: "FK_History_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_History_Song_SongId",
+                        column: x => x.SongId,
+                        principalTable: "Song",
                         principalColumn: "Id");
                 });
 
@@ -217,10 +277,25 @@ namespace ZekterfyInfrastructure.Migrations.Identity
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_History_SongId",
+                table: "History",
+                column: "SongId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_History_UserId",
                 table: "History",
                 column: "UserId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Song_AlbumId",
+                table: "Song",
+                column: "AlbumId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Song_GenreId",
+                table: "Song",
+                column: "GenreId");
         }
 
         /// <inheritdoc />
@@ -249,6 +324,15 @@ namespace ZekterfyInfrastructure.Migrations.Identity
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Song");
+
+            migrationBuilder.DropTable(
+                name: "Album");
+
+            migrationBuilder.DropTable(
+                name: "Genre");
         }
     }
 }

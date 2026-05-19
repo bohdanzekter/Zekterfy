@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ZekterfyDomain.Model.Song>
+
+@{
+    ViewData["Title"] = "Модерація пісень";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-white">🛡 Модерація пісень</h2>
+        <span class="badge bg-warning text-dark fs-6">Очікують: @Model.Count()</span>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-success text-center">
+            <strong>Все чисто!</strong> Нових пісень на перевірку немає.
+        </div>
+    }
+    else
+    {
+        <table class="table spotify-table">
+            <thead>
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Genre.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Album)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Lenght)
+                    </th>
+                    <th style="text-align: right;">Дія</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="spotify-song-title fs-5 text-warning">@item.Name</td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Genre.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Album.Name)
+                        </td>
+                        <td>
+                            @(item.Lenght.Value / 60):@((item.Lenght.Value % 60).ToString("00"))
+                        </td>
+
+                        <td style="text-align: right;">
+                            <div class="d-inline-flex gap-2">
+                                <form asp-controller="Songs" asp-action="Approve" asp-route-id="@item.Id" method="post" class="m-0">
+                                    <button type="submit" class="btn btn-success fw-bold px-4 rounded-pill">✅ Схвалити</button>
+                                </form>
+
+                                <form asp-controller="Songs" asp-action="Delete" asp-route-id="@item.Id" method="post" class="m-0">
+                                    <button type="submit" class="btn btn-outline-danger rounded-pill">❌ Відхилити</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

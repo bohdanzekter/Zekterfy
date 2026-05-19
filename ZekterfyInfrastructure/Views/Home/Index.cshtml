@@ -1,18 +1,82 @@
 ﻿@{
-	ViewData["Title"] = "Лабораторна роботи ІСтаТП 2026.Zekterfy";
+    ViewData["Title"] = "Головна";
 }
+
 @if (User.Identity.IsAuthenticated)
 {
-	<div class="alert alert-success d-flex justify-content-between align-items-center">
-		<span>Привіт, <strong>@User.Identity.Name</strong>! Готовий слухати музику?</span>
-        
-		<form method="post" asp-controller="Account" asp-action="Logout" class="m-0">
-			<button type="submit" class="btn btn-sm btn-outline-danger">Вихід</button>
-		</form>
-	</div>
+    <div class="container-fluid mt-4">
+
+        <h2 class="text-white fw-bold mb-4">Привіт, @(User.Identity.Name?.Split('@')[0])</h2>
+
+        <div class="row mb-5">
+
+            @if (ViewBag.LastFavorite != null)
+            {
+                <div class="col-md-6 col-lg-4 mb-3">
+                    <div class="spotify-top-card d-flex align-items-center" onclick="MusicPlayer.addAndPlay(@ViewBag.LastFavorite.Id, '@ViewBag.LastFavorite.Name')">
+                        <div class="img-placeholder grad-1">❤️</div>
+                        <div class="ms-3 fw-bold text-white fs-5">@ViewBag.LastFavorite.Name</div>
+                        <button class="btn btn-success rounded-circle play-btn" style="width: 48px; height: 48px; font-size: 20px;">▶</button>
+                    </div>
+                </div>
+            }
+
+            @if (ViewBag.LastPlayed != null)
+            {
+                <div class="col-md-6 col-lg-4 mb-3">
+                    <div class="spotify-top-card d-flex align-items-center" onclick="MusicPlayer.addAndPlay(@ViewBag.LastPlayed.Id, '@ViewBag.LastPlayed.Name')">
+                        <div class="img-placeholder grad-2">🎧</div>
+                        <div class="ms-3 fw-bold text-white fs-5">@ViewBag.LastPlayed.Name</div>
+                        <button class="btn btn-success rounded-circle play-btn" style="width: 48px; height: 48px; font-size: 20px;">▶</button>
+                    </div>
+                </div>
+            }
+
+            @if (ViewBag.LastFavorite == null && ViewBag.LastPlayed == null)
+            {
+                <p class="text-muted ms-3">Ви ще не слухали пісень. Оберіть щось із жанрів нижче!</p>
+            }
+        </div>
+
+        <div class="d-flex justify-content-between align-items-end mb-3">
+            <h4 class="text-white fw-bold mb-0">Усі жанри</h4>
+            <a asp-controller="Genres" asp-action="Index" class="text-muted text-decoration-none small fw-bold text-hover-white">Показати всі</a>
+        </div>
+
+        <div class="row">
+            @if (ViewBag.Genres != null)
+            {
+                var genres = ViewBag.Genres as IEnumerable<ZekterfyDomain.Model.Genre>;
+                int colorCounter = 1;
+
+                foreach (var g in genres)
+                {
+                    <div class="col-6 col-md-3 col-lg-2 mb-4">
+                        <a asp-controller="Songs" asp-action="Index" asp-route-id="@g.Id" class="text-decoration-none">
+                            <div class="spotify-grid-card">
+                                <div class="img-placeholder-square grad-@(colorCounter)">
+                                    🎵
+                                </div>
+                                <h6 class="text-white fw-bold mb-1">@g.Name</h6>
+                                <small class="text-muted">Плейліст • Zekterfy</small>
+                            </div>
+                        </a>
+                    </div>
+
+                    colorCounter = colorCounter > 3 ? 1 : colorCounter + 1;
+                }
+            }
+        </div>
+
+    </div>
 }
 else
 {
-	<a asp-controller="Account" asp-action="Login"> Вхід </a>
-	<a asp-controller="Account" asp-action="Register"> Реєстація </a>
+    <div class="text-center mt-5">
+        <h1 class="text-white display-4 fw-bold">Музика для кожного.</h1>
+        <p class="text-muted mb-4 fs-5">Мільйони треків. Без кредитних карток.</p>
+        <a asp-controller="Account" asp-action="Register" class="btn btn-success rounded-pill px-5 py-3 fs-5 fw-bold text-dark mb-3">Зареєструватися безкоштовно</a>
+        <br />
+        <a asp-controller="Account" asp-action="Login" class="btn btn-outline-light rounded-pill px-5 py-2 fw-bold">Увійти</a>
+    </div>
 }

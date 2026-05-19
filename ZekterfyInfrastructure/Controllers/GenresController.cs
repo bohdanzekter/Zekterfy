@@ -57,7 +57,7 @@ namespace ZekterfyInfrastructure.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Info,Id")] Genre genre)
+        public async Task<IActionResult> Create([Bind("Name,Info")] Genre genre)
         {
             if (ModelState.IsValid)
             {

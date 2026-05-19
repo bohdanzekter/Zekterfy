@@ -7,11 +7,18 @@
 <h1>Улюблені</h1>
 
 <p>
-	@Html.ActionLink("Додати до улюблених", "Create", new { userId = ViewBag.UserId })
+	<a class="btn btn-primary rounded-pill" asp-controller="Songs" asp-action="Create">Додати нову пісню</a>
 </p>
-<table class="table">
+<table class="table spotify-table">
 	<thead>
 		<tr>
+			<th>
+			</th>
+			<th>
+			</th>
+			<th>
+			</th>
+			<th>
 			<th>
 				@Html.DisplayNameFor(model => model.Added)
 			</th>
@@ -27,7 +34,27 @@
 	<tbody>
 		@foreach (var item in Model)
 		{
-			<tr>
+				<tr>
+					<td>
+						<button class="btn btn-success rounded-circle btn-sm"
+								onclick="MusicPlayer.addAndPlay(@item.Song.Id, '@item.Song.Name')">
+							▶
+						</button>
+					</td>
+					<td>
+						<button class="btn btn-outline-warning rounded-circle btn-sm" title="Додати в чергу"
+								onclick="MusicPlayer.addToQueue(@item.Song.Id, '@item.Song.Name')">
+							➕
+						</button>
+					</td>
+					<td>
+						<a class="btn btn-outline-danger btn-sm rounded-circle"
+							   style="width: 35px; height: 35px;"
+							   title="Поскаржитись"
+							   asp-controller="Reports" asp-action="Create" asp-route-songId="@item.Song.Id">
+							🚩
+						</a>
+					</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.Added)
 				</td>

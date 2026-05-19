@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ZekterfyDomain.Model.Author>
+
+@{
+    ViewData["Title"] = "Authors";
+}
+
+<h1>Authors</h1>
+
+<p>
+    <a class="btn btn-primary rounded-pill" asp-controller="Songs" asp-action="Create">Додати новий альбом</a>
+</p>
+<table class="table spotify-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Pseudonym)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.birthdate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="spotify-song-title">
+                    @Html.DisplayFor(modelItem => item.Pseudonym)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.birthdate)
+                </td>
+                <td style="text-align: right;">
+                    <div class="btn-group gap-2" role="group">
+                        <a class="btn btn-sm btn-outline-light" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-sm btn-outline-info" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

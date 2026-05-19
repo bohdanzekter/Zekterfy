@@ -13,4 +13,6 @@ public partial class Genre : Entity
     [Required(ErrorMessage = "Інформація обов'язкова")]
     [Display(Name = "Інформація про жанр")]
     public string? Info { get; set; }
+
+    public virtual ICollection<Song> Songs { get; set; } = new List<Song>();
 }

@@ -10,38 +10,32 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Lenght" class="control-label"></label>
-                <input asp-for="Lenght" class="form-control" />
-                <span asp-validation-for="Lenght" class="text-danger"></span>
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group mb-3">
+                <label class="control-label text-white">Оберіть аудіофайл (.mp3)</label>
+                <input type="file" name="audioFile" class="form-control bg-dark text-white" accept="audio/*" required />
             </div>
-            <div class="form-group">
-                <label asp-for="NumOfStreams" class="control-label"></label>
-                <input asp-for="NumOfStreams" class="form-control" />
-                <span asp-validation-for="NumOfStreams" class="text-danger"></span>
+            <div class="form-group mb-3">
+                <label class="control-label">Оберіть автора (Обов'язково)</label>
+                <select name="authorId" class="form-control" asp-items="ViewBag.AuthorList">
+                    <option value="">-- Виберіть автора --</option>
+                </select>
             </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label asp-for="AlbumId" class="control-label"></label>
-                <select asp-for="AlbumId" class ="form-control" asp-items="ViewBag.AlbumId"></select>
+                <select asp-for="AlbumId" class="form-control" asp-items="ViewBag.AlbumList">
+                    <option value="">Створити новий однойменний альбом (Сингл)</option>
+                </select>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label asp-for="GenreId" class="control-label"></label>
-                <input asp-for="GenreId" class="form-control" />
+                <select asp-for="GenreId" class="form-control" asp-items="ViewBag.GenresList">
+                    <option value="">Виберіть жанр зі списку</option>
+                </select>
+    
                 <span asp-validation-for="GenreId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
-
             <input type="hidden" value="@ViewBag.GenreName" name="GenreName" />
 
             <div class="form-group">

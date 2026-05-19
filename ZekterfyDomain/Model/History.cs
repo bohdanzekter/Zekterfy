@@ -9,7 +9,7 @@ public partial class History: Entity
 
     public int? SongId { get; set; }
 
-    public DateOnly? PlayedAt { get; set; }
+    public DateTime PlayedAt { get; set; } = DateTime.UtcNow;
 
-    public virtual User User { get; set; } = null!;
+    public virtual Song? Song { get; set; }
 }

@@ -11,5 +11,5 @@ public partial class Queue : Entity
 
     public int? Position { get; set; }
 
-    public virtual User? User { get; set; }
+    public virtual Song? Song { get; set; }
 }

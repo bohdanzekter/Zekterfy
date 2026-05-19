@@ -46,11 +46,13 @@ public partial class DbZekterfyContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=labdb;Username=student;Password=postgres;SSL Mode=Disable");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Ignore<User>();
+
         modelBuilder.Entity<Album>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("albums_pkey");
@@ -58,8 +60,8 @@ public partial class DbZekterfyContext : DbContext
             entity.ToTable("albums");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+                .HasColumnName("id")
+                .ValueGeneratedOnAdd();
             entity.Property(e => e.AuthorId).HasColumnName("author_id");
             entity.Property(e => e.Name)
                 .HasColumnType("character varying")
@@ -73,8 +75,8 @@ public partial class DbZekterfyContext : DbContext
             entity.ToTable("authors");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+                .HasColumnName("id")
+                .ValueGeneratedOnAdd();
             entity.Property(e => e.Pseudonym)
                 .HasColumnType("character varying")
                 .HasColumnName("pseudonym");
@@ -82,40 +84,40 @@ public partial class DbZekterfyContext : DbContext
 
         modelBuilder.Entity<AuthorAlbum>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("author_albums");
+            entity.HasKey(e => new { e.AuthorId, e.AlbumId }).HasName("author_albums_pkey");
+            entity.ToTable("author_albums");
 
             entity.Property(e => e.AlbumId).HasColumnName("album_id");
             entity.Property(e => e.AuthorId).HasColumnName("author_id");
 
             entity.HasOne(d => d.Album).WithMany()
                 .HasForeignKey(d => d.AlbumId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_album");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("fk_author_albums_album");
 
             entity.HasOne(d => d.Author).WithMany()
                 .HasForeignKey(d => d.AuthorId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_author");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("fk_author_albums_author");
         });
 
         modelBuilder.Entity<AuthorGenre>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("author_genres");
+            entity.HasKey(e => new { e.AuthorId, e.GenreId }).HasName("author_genres_pkey");
+            entity.ToTable("author_genres");
 
             entity.Property(e => e.AuthorId).HasColumnName("author_id");
             entity.Property(e => e.GenreId).HasColumnName("genre_id");
 
             entity.HasOne(d => d.Author).WithMany()
                 .HasForeignKey(d => d.AuthorId)
-                .HasConstraintName("author_id");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("fk_author_genres_author");
 
             entity.HasOne(d => d.Genre).WithMany()
                 .HasForeignKey(d => d.GenreId)
-                .HasConstraintName("genre_id");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("fk_author_genres_genre");
         });
 
         modelBuilder.Entity<Favorite>(entity =>
@@ -128,6 +130,10 @@ public partial class DbZekterfyContext : DbContext
             entity.Property(e => e.SongId).HasColumnName("song_id");
 
             entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.HasOne(d => d.Song)
+                .WithMany()
+                .HasForeignKey(d => d.SongId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Follower>(entity =>
@@ -158,7 +164,7 @@ public partial class DbZekterfyContext : DbContext
             entity.ToTable("genres");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .ValueGeneratedOnAdd()
                 .HasColumnName("id");
             entity.Property(e => e.Info)
                 .HasColumnType("character varying")
@@ -186,11 +192,11 @@ public partial class DbZekterfyContext : DbContext
             entity.Property(e => e.PlayedAt).HasColumnName("played_at");
             entity.Property(e => e.SongId).HasColumnName("song_id");
 
-            entity.HasOne(d => d.User)
+            entity.HasOne(d => d.Song)
                 .WithMany()
-                .HasForeignKey(d => d.UserId)
+                .HasForeignKey(d => d.SongId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("history_user_id_fkey");
+                .HasConstraintName("fk_history_song");
         });
 
         modelBuilder.Entity<Queue>(entity =>
@@ -204,11 +210,10 @@ public partial class DbZekterfyContext : DbContext
                 .ValueGeneratedOnAdd();
             entity.Property(e => e.Position).HasColumnName("position");
             entity.Property(e => e.SongId).HasColumnName("song_id");
-            entity.Property(e => e.UserId).HasColumnName("user_id");
-
-            entity.HasOne(d => d.User).WithMany()
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("user_id");
+            entity.HasOne(d => d.Song)
+                .WithMany()
+                .HasForeignKey(d => d.SongId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Report>(entity =>
@@ -231,20 +236,19 @@ public partial class DbZekterfyContext : DbContext
                 .HasForeignKey(d => d.SongId)
                 .HasConstraintName("fk_song");
 
-            entity.HasOne(d => d.User).WithMany()
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("fk_user");
+            //entity.HasOne(d => d.User).WithMany()
+            //    .HasForeignKey(d => d.UserId)
+            //    .HasConstraintName("fk_user");
         });
 
         modelBuilder.Entity<Song>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("songs_pkey");
-
             entity.ToTable("songs");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+                .HasColumnName("id")
+                .ValueGeneratedOnAdd();
             entity.Property(e => e.AlbumId).HasColumnName("album_id");
             entity.Property(e => e.GenreId)
                 .HasColumnType("integer")
@@ -258,42 +262,48 @@ public partial class DbZekterfyContext : DbContext
             entity.HasOne(d => d.Album).WithMany(p => p.Songs)
                 .HasForeignKey(d => d.AlbumId)
                 .HasConstraintName("fk_album_id");
+            entity.HasOne(d => d.Genre)
+                .WithMany(p => p.Songs)
+                .HasForeignKey(d => d.GenreId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<SongAuthor>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("song_authors");
+            entity.HasKey(e => new { e.SongId, e.AuthorId }).HasName("song_authors_pkey");
+            entity.ToTable("song_authors");
 
             entity.Property(e => e.AuthorId).HasColumnName("author_id");
             entity.Property(e => e.SongId).HasColumnName("song_id");
 
             entity.HasOne(d => d.Author).WithMany()
                 .HasForeignKey(d => d.AuthorId)
-                .HasConstraintName("author_id");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("fk_song_authors_author");
 
             entity.HasOne(d => d.Song).WithMany()
                 .HasForeignKey(d => d.SongId)
-                .HasConstraintName("song_id");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("fk_song_authors_song");
         });
 
         modelBuilder.Entity<SongGenre>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("song_genres");
+            entity.HasKey(e => new { e.SongId, e.GenreId }).HasName("song_genres_pkey");
+            entity.ToTable("song_genres");
 
             entity.Property(e => e.GenreId).HasColumnName("genre_id");
             entity.Property(e => e.SongId).HasColumnName("song_id");
 
             entity.HasOne(d => d.Genre).WithMany()
                 .HasForeignKey(d => d.GenreId)
-                .HasConstraintName("genre_id");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("fk_song_genres_genre");
 
             entity.HasOne(d => d.Song).WithMany()
                 .HasForeignKey(d => d.SongId)
-                .HasConstraintName("song_id");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("fk_song_genres_song");
         });
 
         modelBuilder.Entity<User>(entity =>

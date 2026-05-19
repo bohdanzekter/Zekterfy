@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZekterfyInfrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4cec097e2732f289c55c93f27e3586857204d8df")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e459cb67f6102e7236cf166cb670b8a78fbd9ed")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZekterfyInfrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZekterfyInfrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

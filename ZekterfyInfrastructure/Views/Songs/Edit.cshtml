@@ -11,12 +11,8 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
+            <input type="hidden" asp-for="Id" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Lenght" class="control-label"></label>
-                <input asp-for="Lenght" class="form-control" />
-                <span asp-validation-for="Lenght" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="NumOfStreams" class="control-label"></label>
                 <input asp-for="NumOfStreams" class="form-control" />
@@ -32,11 +28,10 @@
                 <select asp-for="AlbumId" class="form-control" asp-items="ViewBag.AlbumId"></select>
                 <span asp-validation-for="AlbumId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="GenreId" class="control-label"></label>
-                <input asp-for="GenreId" class="form-control" />
-                <span asp-validation-for="GenreId" class="text-danger"></span>
-            </div>
+            <label asp-for="GenreId" class="control-label"></label>
+                <select asp-for="GenreId" class="form-control" asp-items="ViewBag.GenresList">
+                    <option value="">Виберіть жанр зі списку</option>
+                </select>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -46,7 +41,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-route-id="@Model.GenreId" class="btn btn-outline-light mt-3">Назад до списку</a>
 </div>
 
 @section Scripts {

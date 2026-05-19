@@ -12,15 +12,15 @@ using ZekterfyInfrastructure;
 namespace ZekterfyInfrastructure.Migrations
 {
     [DbContext(typeof(DbZekterfyContext))]
-    [Migration("20260411185524_GenreConnectionToSong")]
-    partial class GenreConnectionToSong
+    [Migration("20260515182022_CreateJunctionTablesClean")]
+    partial class CreateJunctionTablesClean
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.5")
+                .HasAnnotation("ProductVersion", "10.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -67,32 +67,34 @@ namespace ZekterfyInfrastructure.Migrations
 
             modelBuilder.Entity("ZekterfyDomain.Model.AuthorAlbum", b =>
                 {
-                    b.Property<int>("AlbumId")
-                        .HasColumnType("integer")
-                        .HasColumnName("album_id");
-
                     b.Property<int>("AuthorId")
                         .HasColumnType("integer")
                         .HasColumnName("author_id");
 
-                    b.HasIndex("AlbumId");
+                    b.Property<int>("AlbumId")
+                        .HasColumnType("integer")
+                        .HasColumnName("album_id");
 
-                    b.HasIndex("AuthorId");
+                    b.HasKey("AuthorId", "AlbumId")
+                        .HasName("author_albums_pkey");
+
+                    b.HasIndex("AlbumId");
 
                     b.ToTable("author_albums", (string)null);
                 });
 
             modelBuilder.Entity("ZekterfyDomain.Model.AuthorGenre", b =>
                 {
-                    b.Property<int?>("AuthorId")
+                    b.Property<int>("AuthorId")
                         .HasColumnType("integer")
                         .HasColumnName("author_id");
 
-                    b.Property<int?>("GenreId")
+                    b.Property<int>("GenreId")
                         .HasColumnType("integer")
                         .HasColumnName("genre_id");
 
-                    b.HasIndex("AuthorId");
+                    b.HasKey("AuthorId", "GenreId")
+                        .HasName("author_genres_pkey");
 
                     b.HasIndex("GenreId");
 
@@ -109,7 +111,7 @@ namespace ZekterfyInfrastructure.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime?>("Added")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("added");
 
                     b.Property<int?>("SongId")
@@ -123,7 +125,7 @@ namespace ZekterfyInfrastructure.Migrations
                     b.HasKey("Id")
                         .HasName("favorites_pkey");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("SongId");
 
                     b.ToTable("favorites", (string)null);
                 });
@@ -158,8 +160,11 @@ namespace ZekterfyInfrastructure.Migrations
             modelBuilder.Entity("ZekterfyDomain.Model.Genre", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Info")
                         .IsRequired()
@@ -186,8 +191,8 @@ namespace ZekterfyInfrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateOnly?>("PlayedAt")
-                        .HasColumnType("date")
+                    b.Property<DateTime>("PlayedAt")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("played_at");
 
                     b.Property<int?>("SongId")
@@ -198,13 +203,12 @@ namespace ZekterfyInfrastructure.Migrations
                         .HasColumnType("text")
                         .HasColumnName("user_id");
 
-                    b.Property<string>("UserId1")
-                        .HasColumnType("text");
-
                     b.HasKey("Id")
                         .HasName("history_pkey");
 
-                    b.HasIndex("UserId1")
+                    b.HasIndex("SongId");
+
+                    b.HasIndex("UserId")
                         .IsUnique();
 
                     b.HasIndex(new[] { "UserId" }, "history_user_id_index");
@@ -230,13 +234,12 @@ namespace ZekterfyInfrastructure.Migrations
                         .HasColumnName("song_id");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("text")
-                        .HasColumnName("user_id");
+                        .HasColumnType("text");
 
                     b.HasKey("Id")
                         .HasName("queue_pkey");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("SongId");
 
                     b.ToTable("queue", (string)null);
                 });
@@ -249,6 +252,9 @@ namespace ZekterfyInfrastructure.Migrations
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Reason")
                         .HasMaxLength(250)
@@ -272,16 +278,17 @@ namespace ZekterfyInfrastructure.Migrations
 
                     b.HasIndex("SongId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("reports", (string)null);
                 });
 
             modelBuilder.Entity("ZekterfyDomain.Model.Song", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("AlbumId")
                         .HasColumnType("integer")
@@ -316,34 +323,36 @@ namespace ZekterfyInfrastructure.Migrations
 
             modelBuilder.Entity("ZekterfyDomain.Model.SongAuthor", b =>
                 {
-                    b.Property<int?>("AuthorId")
-                        .HasColumnType("integer")
-                        .HasColumnName("author_id");
-
-                    b.Property<int?>("SongId")
+                    b.Property<int>("SongId")
                         .HasColumnType("integer")
                         .HasColumnName("song_id");
 
-                    b.HasIndex("AuthorId");
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("integer")
+                        .HasColumnName("author_id");
 
-                    b.HasIndex("SongId");
+                    b.HasKey("SongId", "AuthorId")
+                        .HasName("song_authors_pkey");
+
+                    b.HasIndex("AuthorId");
 
                     b.ToTable("song_authors", (string)null);
                 });
 
             modelBuilder.Entity("ZekterfyDomain.Model.SongGenre", b =>
                 {
-                    b.Property<int?>("GenreId")
-                        .HasColumnType("integer")
-                        .HasColumnName("genre_id");
-
-                    b.Property<int?>("SongId")
+                    b.Property<int>("SongId")
                         .HasColumnType("integer")
                         .HasColumnName("song_id");
 
-                    b.HasIndex("GenreId");
+                    b.Property<int>("GenreId")
+                        .HasColumnType("integer")
+                        .HasColumnName("genre_id");
 
-                    b.HasIndex("SongId");
+                    b.HasKey("SongId", "GenreId")
+                        .HasName("song_genres_pkey");
+
+                    b.HasIndex("GenreId");
 
                     b.ToTable("song_genres", (string)null);
                 });
@@ -414,14 +423,16 @@ namespace ZekterfyInfrastructure.Migrations
                     b.HasOne("ZekterfyDomain.Model.Album", "Album")
                         .WithMany()
                         .HasForeignKey("AlbumId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_album");
+                        .HasConstraintName("fk_author_albums_album");
 
                     b.HasOne("ZekterfyDomain.Model.Author", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_author");
+                        .HasConstraintName("fk_author_albums_author");
 
                     b.Navigation("Album");
 
@@ -433,12 +444,16 @@ namespace ZekterfyInfrastructure.Migrations
                     b.HasOne("ZekterfyDomain.Model.Author", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId")
-                        .HasConstraintName("author_id");
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_author_genres_author");
 
                     b.HasOne("ZekterfyDomain.Model.Genre", "Genre")
                         .WithMany()
                         .HasForeignKey("GenreId")
-                        .HasConstraintName("genre_id");
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_author_genres_genre");
 
                     b.Navigation("Author");
 
@@ -447,12 +462,12 @@ namespace ZekterfyInfrastructure.Migrations
 
             modelBuilder.Entity("ZekterfyDomain.Model.Favorite", b =>
                 {
-                    b.HasOne("ZekterfyDomain.Model.User", "User")
+                    b.HasOne("ZekterfyDomain.Model.Song", "Song")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("user_id");
+                        .HasForeignKey("SongId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.Navigation("User");
+                    b.Navigation("Song");
                 });
 
             modelBuilder.Entity("ZekterfyDomain.Model.Follower", b =>
@@ -474,27 +489,25 @@ namespace ZekterfyInfrastructure.Migrations
 
             modelBuilder.Entity("ZekterfyDomain.Model.History", b =>
                 {
-                    b.HasOne("ZekterfyDomain.Model.User", "User")
+                    b.HasOne("ZekterfyDomain.Model.Song", "Song")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .HasConstraintName("history_user_id_fkey");
+                        .HasForeignKey("SongId");
 
                     b.HasOne("ZekterfyDomain.Model.User", null)
                         .WithOne("History")
-                        .HasForeignKey("ZekterfyDomain.Model.History", "UserId1");
+                        .HasForeignKey("ZekterfyDomain.Model.History", "UserId");
 
-                    b.Navigation("User");
+                    b.Navigation("Song");
                 });
 
             modelBuilder.Entity("ZekterfyDomain.Model.Queue", b =>
                 {
-                    b.HasOne("ZekterfyDomain.Model.User", "User")
+                    b.HasOne("ZekterfyDomain.Model.Song", "Song")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("user_id");
+                        .HasForeignKey("SongId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.Navigation("User");
+                    b.Navigation("Song");
                 });
 
             modelBuilder.Entity("ZekterfyDomain.Model.Report", b =>
@@ -504,14 +517,7 @@ namespace ZekterfyInfrastructure.Migrations
                         .HasForeignKey("SongId")
                         .HasConstraintName("fk_song");
 
-                    b.HasOne("ZekterfyDomain.Model.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("fk_user");
-
                     b.Navigation("Song");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ZekterfyDomain.Model.Song", b =>
@@ -522,8 +528,9 @@ namespace ZekterfyInfrastructure.Migrations
                         .HasConstraintName("fk_album_id");
 
                     b.HasOne("ZekterfyDomain.Model.Genre", "Genre")
-                        .WithMany()
-                        .HasForeignKey("GenreId");
+                        .WithMany("Songs")
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Album");
 
@@ -535,12 +542,16 @@ namespace ZekterfyInfrastructure.Migrations
                     b.HasOne("ZekterfyDomain.Model.Author", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId")
-                        .HasConstraintName("author_id");
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_song_authors_author");
 
                     b.HasOne("ZekterfyDomain.Model.Song", "Song")
                         .WithMany()
                         .HasForeignKey("SongId")
-                        .HasConstraintName("song_id");
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_song_authors_song");
 
                     b.Navigation("Author");
 
@@ -552,12 +563,16 @@ namespace ZekterfyInfrastructure.Migrations
                     b.HasOne("ZekterfyDomain.Model.Genre", "Genre")
                         .WithMany()
                         .HasForeignKey("GenreId")
-                        .HasConstraintName("genre_id");
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_song_genres_genre");
 
                     b.HasOne("ZekterfyDomain.Model.Song", "Song")
                         .WithMany()
                         .HasForeignKey("SongId")
-                        .HasConstraintName("song_id");
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_song_genres_song");
 
                     b.Navigation("Genre");
 
@@ -565,6 +580,11 @@ namespace ZekterfyInfrastructure.Migrations
                 });
 
             modelBuilder.Entity("ZekterfyDomain.Model.Album", b =>
+                {
+                    b.Navigation("Songs");
+                });
+
+            modelBuilder.Entity("ZekterfyDomain.Model.Genre", b =>
                 {
                     b.Navigation("Songs");
                 });

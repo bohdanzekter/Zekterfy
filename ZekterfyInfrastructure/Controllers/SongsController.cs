@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ZekterfyDomain.Model;
 using ZekterfyInfrastructure;
+using TagLib;
 
 namespace ZekterfyInfrastructure.Controllers
 {
@@ -27,19 +28,38 @@ namespace ZekterfyInfrastructure.Controllers
         {
             if (id == null) return RedirectToAction("Index", "Genres");
 
-            // Якщо прийшов 0 з нашого верхнього меню — показуємо всі пісні
-            if (id == 0)
-            {
-                return View(await _context.Songs.ToListAsync());
-            }
-            //знаходження пісень за жанром
+            ViewBag.SongAuthors = await _context.SongAuthors.Include(sa => sa.Author).ToListAsync();
+
             ViewBag.GenreId = id;
 
-            var songByGenre = _context.Songs.
-                Include(s => s.Genre).
-                Where(s => s.GenreId == id);
-            return View(await songByGenre.ToListAsync());
+            if (id != 0)
+            {
+                var genre = await _context.Genres.FirstOrDefaultAsync(g => g.Id == id);
+                ViewBag.GenreName = genre != null ? genre.Name : "- невідомий жанр";
+            }
+            else
+            {
+                ViewBag.GenreName = "- всі жанри";
+            }
+
+            if (id == 0)
+            {
+                var allSongs = await _context.Songs
+                    .Include(s => s.Genre).Include(s => s.Album)
+                    .Where(s => s.IsApproved)
+                    .ToListAsync();
+                return View(allSongs);
+            }
+
+            var songByGenre = await _context.Songs
+                .Include(s => s.Genre).Include(s => s.Album)
+                .Where(s => s.GenreId == id && s.IsApproved)
+                .ToListAsync();
+
+            ViewBag.SongAuthors = await _context.SongAuthors.Include(sa => sa.Author).ToListAsync();
+            return View(songByGenre);
         }
+
 
         // GET: Songs/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -62,38 +82,72 @@ namespace ZekterfyInfrastructure.Controllers
         }
 
         // GET: Songs/Create
-        public IActionResult Create(int genreId)
+        [Authorize(Roles = "admin, author")]
+        public IActionResult Create()
         {
-            ViewBag.GenreId = genreId;
+            ViewBag.GenresList = new SelectList(_context.Genres, "Id", "Name");
+            ViewBag.AlbumList = new SelectList(_context.Albums, "Id", "Name");
 
-            var genre = _context.Genres.FirstOrDefault(g => g.Id == genreId);
-
-            ViewBag.GenreName = genre?.Name;
+            ViewBag.AuthorList = new SelectList(_context.Authors, "Id", "Pseudonym");
 
             return View();
         }
 
-        // POST: Songs/Create   
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598. 
+        // POST: Songs/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int genreId, [Bind("Lenght,NumOfStreams,Name,AlbumId,GenreName,Id")] Song song)
+        public async Task<IActionResult> Create([Bind("AlbumId,GenreId")] Song song, int authorId, IFormFile audioFile)
         {
-            song.GenreId = genreId;
+            song.NumOfStreams = 0;
+            ModelState.Remove("Genre");
+            ModelState.Remove("Album");
+            ModelState.Remove("Name");
+            ModelState.Remove("Lenght");
+
+            if (authorId == 0) ModelState.AddModelError("authorId", "Оберіть автора!");
+            if (audioFile == null || audioFile.Length == 0) ModelState.AddModelError("", "Завантажте файл!");
+
             if (ModelState.IsValid)
             {
-                _context.Add(song);
-                await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
-                return RedirectToAction("Index", "Songs", new { id = genreId, name = _context.Genres.Where(g => g.Id == genreId).FirstOrDefault().Name });
-                //return RedirectToAction("Index", new { id = genreId });
-            }
-            //ViewData["AlbumId"] = new SelectList(_context.Albums, "Id", "Name", song.AlbumId);
-            //return View(song);
-            return RedirectToAction("Index", "Songs", new { id = genreId, name = _context.Genres.Where(g => g.Id == genreId).FirstOrDefault().Name });
-            //return RedirectToAction("Index", new { id = genreId });
+                song.Name = Path.GetFileNameWithoutExtension(audioFile.FileName);
 
+                string fileExtension = Path.GetExtension(audioFile.FileName);
+                string uniqueFileName = Guid.NewGuid().ToString() + fileExtension;
+                song.FileName = uniqueFileName;
+
+                string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "audio");
+                Directory.CreateDirectory(uploadsFolder);
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await audioFile.CopyToAsync(fileStream);
+                }
+                var tfile = TagLib.File.Create(filePath);
+                song.Lenght = (int)tfile.Properties.Duration.TotalSeconds;
+
+                if (song.AlbumId == null || song.AlbumId == 0)
+                {
+                    var newAlbum = new Album { Name = song.Name };
+                    _context.Albums.Add(newAlbum);
+                    await _context.SaveChangesAsync();
+                    song.AlbumId = newAlbum.Id;
+                    _context.AuthorAlbums.Add(new AuthorAlbum { AlbumId = newAlbum.Id, AuthorId = authorId });
+                }
+
+                _context.Songs.Add(song);
+                await _context.SaveChangesAsync();
+
+                _context.SongAuthors.Add(new SongAuthor { SongId = song.Id, AuthorId = authorId });
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Index", new { id = song.GenreId });
+            }
+
+            ViewBag.GenresList = new SelectList(_context.Genres, "Id", "Name", song.GenreId);
+            ViewBag.AlbumList = new SelectList(_context.Albums, "Id", "Name", song.AlbumId);
+            ViewBag.AuthorList = new SelectList(_context.Authors, "Id", "Pseudonym", authorId);
+            return View(song);
         }
 
         // GET: Songs/Edit/5
@@ -109,6 +163,8 @@ namespace ZekterfyInfrastructure.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.GenresList = new SelectList(_context.Genres, "Id", "Name", song.GenreId);
             ViewData["AlbumId"] = new SelectList(_context.Albums, "Id", "Name", song.AlbumId);
             return View(song);
         }
@@ -118,33 +174,32 @@ namespace ZekterfyInfrastructure.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Lenght,NumOfStreams,Name,AlbumId,GenreName,Id")] Song song)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Lenght,AlbumId,GenreId")] Song song)
         {
-            if (id != song.Id)
-            {
-                return NotFound();
-            }
+            if (id != song.Id) return NotFound();
+
+            ModelState.Remove("Genre");
+            ModelState.Remove("Album");
+            ModelState.Remove("FileName");
+            ModelState.Remove("Lenght");
+
+            if (song.GenreId == 0) ModelState.AddModelError("GenreId", "Оберіть жанр!");
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(song);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!SongExists(song.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                var existingSong = await _context.Songs.FindAsync(id);
+                if (existingSong == null) return NotFound();
+
+                existingSong.Name = song.Name;
+                existingSong.AlbumId = song.AlbumId;
+                existingSong.GenreId = song.GenreId;
+
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Index", new { id = existingSong.GenreId });
             }
+
+            ViewBag.GenresList = new SelectList(_context.Genres, "Id", "Name", song.GenreId);
             ViewData["AlbumId"] = new SelectList(_context.Albums, "Id", "Name", song.AlbumId);
             return View(song);
         }
@@ -189,10 +244,15 @@ namespace ZekterfyInfrastructure.Controllers
         }
 
         [HttpGet]
-        public IActionResult Stream(int id)
+        public async Task<IActionResult> Stream(int id)
         {
-            string fileName = $"{id}.mp3";
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "audio", fileName);
+            var song = await _context.Songs.FindAsync(id);
+            if (song == null || string.IsNullOrEmpty(song.FileName))
+            {
+                return NotFound();
+            }
+
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "audio", song.FileName);
 
             if (!System.IO.File.Exists(filePath))
             {
@@ -200,6 +260,31 @@ namespace ZekterfyInfrastructure.Controllers
             }
 
             return PhysicalFile(filePath, "audio/mpeg", enableRangeProcessing: true);
+        }
+
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> Pending()
+        {
+            // Шукаємо пісні, де IsApproved == false
+            var pendingSongs = await _context.Songs
+                .Include(s => s.Genre).Include(s => s.Album)
+                .Where(s => !s.IsApproved)
+                .ToListAsync();
+
+            return View(pendingSongs);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> Approve(int id)
+        {
+            var song = await _context.Songs.FindAsync(id);
+            if (song != null)
+            {
+                song.IsApproved = true; // СХВАЛЮЄМО!
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Pending));
         }
     }
 }

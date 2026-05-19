@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "ContainingType": "ZekterfyInfrastructure.Controllers.ChartsController",
+    "Method": "GetSongsByGenreAsync",
+    "RelativePath": "api/Charts/songsByGenre",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

@@ -1,56 +1,51 @@
 ﻿@model IEnumerable<ZekterfyDomain.Model.Report>
 
 @{
-	ViewData["Title"] = "Index";
+    ViewData["Title"] = "Керування скаргами";
 }
 
-<h1>Index</h1>
+<div class="container mt-4">
+    <h2 class="text-white mb-4">🚩 Скарги на пісні</h2>
 
-<p>
-	<a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-	<thead>
-		<tr>
-			<th>
-				@Html.DisplayNameFor(model => model.Reason)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Status)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Song)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.User)
-			</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.Reason)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Status)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Song.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.User.Id)
-				</td>
-				<td>
-					<div class="btn-group gap-2" role="group">
-						<a class="btn btn-sm btn-outline-light" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-						<a class="btn btn-sm btn-outline-info" asp-action="Details" asp-route-id="@item.Id">Details</a>
-						<a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-					</div>
-				</td>
-			</tr>
-		}
-	</tbody>
-</table>
+    <table class="table spotify-table">
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Пісня</th>
+                <th>Причина</th>
+                <th>Користувач (ID)</th>
+                <th>Статус</th>
+                <th style="text-align: right;">Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr style="@(item.Status == true ? "opacity: 0.5;" : "")">
+                    <td class="text-muted">@item.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
+                    <td class="spotify-song-title">@(item.Song?.Name ?? "Пісню видалено")</td>
+                    <td>@item.Reason</td>
+                    <td class="small text-muted">@item.UserId</td>
+                    <td>
+                        @if (item.Status == true)
+                        {
+                            <span class="badge bg-success">Розглянуто</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning text-dark">Нова</span>
+                        }
+                    </td>
+                    <td style="text-align: right;">
+                        @if (item.Status != true)
+                        {
+                            <form asp-action="Resolve" asp-route-id="@item.Id" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-sm btn-outline-success">Вирішено</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

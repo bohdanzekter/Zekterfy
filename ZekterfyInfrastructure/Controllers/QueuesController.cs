@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using ZekterfyDomain.Model;
 using ZekterfyInfrastructure;
 
 namespace ZekterfyInfrastructure.Controllers
 {
+    [Authorize]
     public class QueuesController : Controller
     {
         private readonly DbZekterfyContext _context;
@@ -22,143 +25,56 @@ namespace ZekterfyInfrastructure.Controllers
         // GET: Queues
         public async Task<IActionResult> Index()
         {
-            var dbZekterfyContext = _context.Queues.Include(q => q.User);
-            return View(await dbZekterfyContext.ToListAsync());
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var userQueue = _context.Queues
+                .Include(q => q.Song)
+                .Where(q => q.UserId == currentUserId)
+                .OrderBy(q => q.Position);
+
+            return View(await userQueue.ToListAsync());
         }
 
-        // GET: Queues/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var queue = await _context.Queues
-                .Include(q => q.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (queue == null)
-            {
-                return NotFound();
-            }
-
-            return View(queue);
-        }
-
-        // GET: Queues/Create
-        public IActionResult Create()
-        {
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
-        }
-
-        // POST: Queues/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Queues/AddToQueue
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,SongId,Position,Id")] Queue queue)
+        public async Task<IActionResult> AddToQueue(int songId)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(queue);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", queue.UserId);
-            return View(queue);
-        }
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        // GET: Queues/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var lastPosition = await _context.Queues
+                .Where(q => q.UserId == currentUserId)
+                .MaxAsync(q => (int?)q.Position) ?? 0;
 
-            var queue = await _context.Queues.FindAsync(id);
-            if (queue == null)
+            var newQueueItem = new Queue
             {
-                return NotFound();
-            }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", queue.UserId);
-            return View(queue);
-        }
+                UserId = currentUserId,
+                SongId = songId,
+                Position = lastPosition + 1
+            };
 
-        // POST: Queues/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,SongId,Position,Id")] Queue queue)
-        {
-            if (id != queue.Id)
-            {
-                return NotFound();
-            }
+            _context.Add(newQueueItem);
+            await _context.SaveChangesAsync();
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(queue);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!QueueExists(queue.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", queue.UserId);
-            return View(queue);
-        }
-
-        // GET: Queues/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var queue = await _context.Queues
-                .Include(q => q.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (queue == null)
-            {
-                return NotFound();
-            }
-
-            return View(queue);
+            return Ok();
         }
 
         // POST: Queues/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var queue = await _context.Queues.FindAsync(id);
-            if (queue != null)
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var queueItem = await _context.Queues
+                .FirstOrDefaultAsync(q => q.Id == id && q.UserId == currentUserId);
+
+            if (queueItem != null)
             {
-                _context.Queues.Remove(queue);
+                _context.Queues.Remove(queueItem);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool QueueExists(int id)
-        {
-            return _context.Queues.Any(e => e.Id == id);
         }
     }
 }

@@ -13,7 +13,9 @@ public partial class Report : Entity
 
     public bool? Status { get; set; }
 
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
     public virtual Song? Song { get; set; }
 
-    public virtual User? User { get; set; }
+    //public virtual User? User { get; set; }
 }

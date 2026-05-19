@@ -1,46 +1,22 @@
 ﻿@model ZekterfyDomain.Model.Report
 
-@{
-    ViewData["Title"] = "Create";
-}
+<div class="container mt-5">
+    <div class="card bg-dark text-white p-4 mx-auto" style="max-width: 500px; border-radius: 15px;">
+        <h2 class="text-danger">🚩 Поскаржитись</h2>
+        <p class="text-muted">Ви хочете надіслати скаргу на пісню: <strong>@ViewBag.SongName</strong></p>
 
-<h1>Create</h1>
+        <form asp-action="Create" method="post">
+            <input type="hidden" name="songId" value="@ViewBag.SongId" />
+            
+            <div class="form-group mb-3">
+                <label class="form-label">Причина скарги:</label>
+                <textarea name="reason" class="form-control bg-secondary text-white border-0" rows="4" placeholder="Напишіть, що не так з цією піснею..."></textarea>
+            </div>
 
-<h4>Report</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="SongId" class="control-label"></label>
-                <select asp-for="SongId" class ="form-control" asp-items="ViewBag.SongId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Reason" class="control-label"></label>
-                <input asp-for="Reason" class="form-control" />
-                <span asp-validation-for="Reason" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-danger w-100">Надіслати</button>
+                <a asp-controller="Songs" asp-action="Index" asp-route-id="0" class="btn btn-outline-light w-100">Скасувати</a>
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
